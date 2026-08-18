@@ -365,39 +365,29 @@
     }, { once: true });
   }
 
+  /* Load Three.js via CCS module loader (vendor local → CDN fallback) */
+  function loadThreeJS() {
+    if (window.THREE) return Promise.resolve(window.THREE);
+    var LOCAL = "assets/js/vendor/three-all.module.js";
+    var CDN = "https://cdn.jsdelivr.net/npm/three@0.160.0/+esm";
+    return CCS.loadModule(LOCAL).then(function (m) {
+      if (m.THREE) return m.THREE;
+      throw new Error("bundle incompleto");
+    }).catch(function () {
+      return CCS.loadModule(CDN).then(function (m) { return m; });
+    });
+  }
+
   /* Boot when DOM ready */
   function boot() {
     document.querySelectorAll('[data-engine="3d"][data-architectural]').forEach(function (host) {
-      if (window.THREE) {
-        createScene(host, window.THREE);
-      } else {
-        /* Wait for Three.js to load */
-        var obs = new MutationObserver(function () {
-          if (window.THREE) {
-            obs.disconnect();
-            createScene(host, window.THREE);
-          }
-        });
-        obs.observe(document.documentElement, { childList: true, subtree: true });
-        /* Also check periodically */
-        var check = setInterval(function () {
-          if (window.THREE) {
-            clearInterval(check);
-            obs.disconnect();
-            createScene(host, window.THREE);
-          }
-        }, 500);
-        /* Timeout after 10s */
-        setTimeout(function () {
-          clearInterval(check);
-          obs.disconnect();
-          if (!window.THREE) {
-            var fb = host.querySelector("[data-fallback]");
-            if (fb) fb.removeAttribute("hidden");
-            host.classList.add("is-fallback");
-          }
-        }, 10000);
-      }
+      loadThreeJS().then(function (THREE) {
+        createScene(host, THREE);
+      }).catch(function () {
+        var fb = host.querySelector("[data-fallback]");
+        if (fb) fb.removeAttribute("hidden");
+        host.classList.add("is-fallback");
+      });
     });
   }
 
