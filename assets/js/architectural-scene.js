@@ -368,7 +368,7 @@
   /* Load Three.js via CCS module loader (vendor local → CDN fallback) */
   function loadThreeJS() {
     if (window.THREE) return Promise.resolve(window.THREE);
-    var LOCAL = "assets/js/vendor/three-all.module.js";
+    var LOCAL = "./assets/js/vendor/three-all.module.js";
     var CDN = "https://cdn.jsdelivr.net/npm/three@0.160.0/+esm";
     return CCS.loadModule(LOCAL).then(function (m) {
       if (m.THREE) return m.THREE;
