@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aether-house.vercel.app/sitemap.xml

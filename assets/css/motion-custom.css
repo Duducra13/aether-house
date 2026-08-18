@@ -1,0 +1,837 @@
+/* ==========================================================================
+   AETHER HOUSE — Premium Motion & Interaction System
+   Architecture Studio — Motion Layer
+   ==========================================================================
+   Design tokens reference:
+   - Gold:   #c9a96e
+   - BG:     #0c0b09
+   - Text:   #f0ece4
+   - Muted:  #9a9488
+   - Fonts:  Cormorant Garamond (display), Inter (body)
+   ========================================================================== */
+
+/* ==========================================================================
+   1. PAGE TRANSITION OVERLAY
+   ========================================================================== */
+
+.ah-page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0c0b09;
+  pointer-events: none;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  will-change: transform;
+}
+
+.ah-page-transition.is-active {
+  pointer-events: all;
+  animation: ah-page-transition-in 0.5s cubic-bezier(0.65, 0, 0.35, 1) forwards,
+             ah-page-transition-out 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+@keyframes ah-page-transition-in {
+  0% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+}
+
+@keyframes ah-page-transition-out {
+  0% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+}
+
+
+/* ==========================================================================
+   2. CUSTOM CURSOR
+   ========================================================================== */
+
+.ah-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(201, 169, 110, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 280ms cubic-bezier(0.16, 1, 0.3, 1),
+              height 280ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+              background 280ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 120ms ease;
+  will-change: transform;
+  mix-blend-mode: difference;
+}
+
+.ah-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: #c9a96e;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10001;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: opacity 120ms ease;
+}
+
+.ah-cursor.is-hovering {
+  width: 64px;
+  height: 64px;
+  border-color: rgba(201, 169, 110, 0.8);
+  background: rgba(201, 169, 110, 0.06);
+}
+
+.ah-cursor.is-clicking {
+  width: 32px;
+  height: 32px;
+  border-color: rgba(201, 169, 110, 1);
+  background: rgba(201, 169, 110, 0.12);
+}
+
+.ah-cursor.is-hidden,
+.ah-cursor-dot.is-hidden {
+  opacity: 0;
+}
+
+.ah-cursor.is-text {
+  width: 4px;
+  height: 32px;
+  border-radius: 2px;
+  border-color: #c9a96e;
+}
+
+.ah-cursor.is-dragging {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(201, 169, 110, 1);
+  background: rgba(201, 169, 110, 0.1);
+}
+
+
+/* ==========================================================================
+   3. SMOOTH SCROLL PROGRESS INDICATOR
+   ========================================================================== */
+
+.ah-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  z-index: 9998;
+  background: transparent;
+  overflow: hidden;
+}
+
+.ah-scroll-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--scroll-progress, 0%);
+  background: linear-gradient(
+    90deg,
+    rgba(201, 169, 110, 0.2) 0%,
+    #c9a96e 40%,
+    #c9a96e 60%,
+    rgba(201, 169, 110, 0.6) 100%
+  );
+  transition: width 60ms linear;
+  will-change: width;
+}
+
+.ah-scroll-progress.is-visible::after {
+  opacity: 1;
+}
+
+
+/* ==========================================================================
+   4. LINK HOVER UNDERLINE ANIMATION
+   ========================================================================== */
+
+.ah-link-hover {
+  position: relative;
+  display: inline-block;
+  color: #f0ece4;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.ah-link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #c9a96e;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ah-link-hover:hover::after,
+.ah-link-hover:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.ah-link-hover.is-active::after {
+  transform: scaleX(1);
+}
+
+
+/* ==========================================================================
+   5. CARD HOVER EFFECTS
+   ========================================================================== */
+
+.ah-card {
+  position: relative;
+  background: rgba(12, 11, 9, 0.6);
+  border: 1px solid rgba(201, 169, 110, 0.08);
+  transition: border-color 500ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 500ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+  overflow: hidden;
+}
+
+.ah-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1;
+  box-shadow: inset 0 0 0 1px rgba(201, 169, 110, 0.3),
+              0 0 30px -10px rgba(201, 169, 110, 0.15);
+}
+
+.ah-card:hover::before {
+  opacity: 1;
+}
+
+.ah-card:hover {
+  border-color: rgba(201, 169, 110, 0.2);
+  box-shadow: 0 8px 40px -12px rgba(201, 169, 110, 0.12),
+              0 0 0 1px rgba(201, 169, 110, 0.06);
+  transform: translateY(-2px);
+}
+
+.ah-project {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ah-project::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  transition: border-color 500ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ah-project:hover::after {
+  border-color: rgba(201, 169, 110, 0.25);
+  box-shadow: inset 0 0 40px -20px rgba(201, 169, 110, 0.1),
+              0 0 50px -15px rgba(201, 169, 110, 0.08);
+}
+
+
+/* ==========================================================================
+   6. TEXT REVEAL ANIMATION (clip from bottom)
+   ========================================================================== */
+
+.ah-reveal-text {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.ah-reveal-text > span,
+.ah-reveal-text > a {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 500ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.ah-reveal-text.is-revealed > span,
+.ah-reveal-text.is-revealed > a {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Multi-line stagger support */
+.ah-reveal-text[data-line="1"] > span,
+.ah-reveal-text[data-line="1"] > a { transition-delay: 0ms; }
+.ah-reveal-text[data-line="2"] > span,
+.ah-reveal-text[data-line="2"] > a { transition-delay: 80ms; }
+.ah-reveal-text[data-line="3"] > span,
+.ah-reveal-text[data-line="3"] > a { transition-delay: 160ms; }
+.ah-reveal-text[data-line="4"] > span,
+.ah-reveal-text[data-line="4"] > a { transition-delay: 240ms; }
+.ah-reveal-text[data-line="5"] > span,
+.ah-reveal-text[data-line="5"] > a { transition-delay: 320ms; }
+
+
+/* ==========================================================================
+   7. STAGGER ENTRANCE ANIMATION
+   ========================================================================== */
+
+.ah-stagger-child {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: ah-stagger-in 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--stagger-index, 0) * 100ms);
+}
+
+@keyframes ah-stagger-in {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container trigger: when parent gets .is-visible, children animate */
+.ah-stagger-container:not(.is-visible) .ah-stagger-child {
+  animation-play-state: paused;
+}
+
+.ah-stagger-container.is-visible .ah-stagger-child {
+  animation-play-state: running;
+}
+
+
+/* ==========================================================================
+   8. IMAGE PARALLAX ON HOVER
+   ========================================================================== */
+
+.ah-parallax-hover {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ah-parallax-hover img,
+.ah-parallax-hover .ah-parallax-layer {
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  object-fit: cover;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.ah-parallax-hover:hover img,
+.ah-parallax-hover:hover .ah-parallax-layer {
+  transform: translate(
+    calc(var(--parallax-x, 0) * 1px),
+    calc(var(--parallax-y, 0) * 1px)
+  );
+}
+
+/* Static parallax offset on hover (for CSS-only fallback) */
+.ah-parallax-hover:hover img {
+  transform: translate(-10px, -10px);
+}
+
+
+/* ==========================================================================
+   9. MAGNETIC BUTTON EFFECT
+   ========================================================================== */
+
+.ah-magnetic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.ah-magnetic::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.ah-magnetic:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 24px -4px rgba(201, 169, 110, 0.25),
+              0 0 0 1px rgba(201, 169, 110, 0.15);
+}
+
+.ah-magnetic:hover::before {
+  opacity: 1;
+}
+
+.ah-magnetic:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 12px -2px rgba(201, 169, 110, 0.2);
+}
+
+/* Inner content shifts opposite to magnetic pull */
+.ah-magnetic .ah-magnetic-content {
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+
+/* ==========================================================================
+   10. SECTION DIVIDER LINE (draws itself on scroll)
+   ========================================================================== */
+
+.ah-divider-line {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background: rgba(201, 169, 110, 0.1);
+  overflow: visible;
+}
+
+.ah-divider-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 169, 110, 0.15) 15%,
+    #c9a96e 50%,
+    rgba(201, 169, 110, 0.15) 85%,
+    transparent 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.ah-divider-line.is-drawn::after {
+  transform: scaleX(1);
+}
+
+/* Center-origin variant */
+.ah-divider-line.is-centered::after {
+  transform-origin: center;
+}
+
+/* Width-limited variant */
+.ah-divider-line.is-limited {
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.ah-divider-line.is-limited::after {
+  transform-origin: center;
+}
+
+
+/* ==========================================================================
+   11. NUMBER COUNTER ANIMATION
+   ========================================================================== */
+
+.ah-count-up {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+.ah-count-up .ah-count-value {
+  display: inline-block;
+  transition: opacity 120ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ah-count-up.is-counting .ah-count-value {
+  animation: ah-count-bounce 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes ah-count-bounce {
+  0% {
+    opacity: 0.4;
+    transform: translateY(8px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ah-count-up .ah-count-suffix {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1) 100ms,
+              transform 400ms cubic-bezier(0.16, 1, 0.3, 1) 100ms;
+}
+
+.ah-count-up.is-done .ah-count-suffix {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animated number digit transition */
+.ah-count-up .ah-digit {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 1em;
+  vertical-align: bottom;
+}
+
+.ah-count-up .ah-digit-inner {
+  display: flex;
+  flex-direction: column;
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+
+/* ==========================================================================
+   12. LOADING SKELETON SHIMMER
+   ========================================================================== */
+
+.ah-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgba(201, 169, 110, 0.04);
+  border-radius: 2px;
+}
+
+.ah-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 169, 110, 0.06) 40%,
+    rgba(201, 169, 110, 0.1) 50%,
+    rgba(201, 169, 110, 0.06) 60%,
+    transparent 100%
+  );
+  animation: ah-skeleton-shimmer 1.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes ah-skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.ah-skeleton.is-loaded::after {
+  animation: ah-skeleton-fade-out 400ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes ah-skeleton-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* Skeleton shapes */
+.ah-skeleton.is-text {
+  height: 1em;
+  border-radius: 4px;
+}
+
+.ah-skeleton.is-heading {
+  height: 2em;
+  border-radius: 4px;
+}
+
+.ah-skeleton.is-circle {
+  border-radius: 50%;
+}
+
+.ah-skeleton.is-image {
+  aspect-ratio: 16 / 10;
+  border-radius: 2px;
+}
+
+
+/* ==========================================================================
+   13. ACCESSIBLE FOCUS RING
+   ========================================================================== */
+
+:focus-visible {
+  outline: 2px solid #c9a96e;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Enhanced focus for dark backgrounds */
+.ah-card :focus-visible,
+.ah-project :focus-visible {
+  outline: 2px solid #c9a96e;
+  outline-offset: 4px;
+}
+
+/* Remove default outline for elements using custom focus */
+.ah-magnetic:focus-visible {
+  outline: 2px solid #c9a96e;
+  outline-offset: 4px;
+  box-shadow: 0 4px 24px -4px rgba(201, 169, 110, 0.25),
+              0 0 0 1px rgba(201, 169, 110, 0.15);
+}
+
+/* Skip link */
+.ah-skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #c9a96e;
+  color: #0c0b09;
+  padding: 8px 24px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 10002;
+  transition: top 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ah-skip-link:focus-visible {
+  top: 16px;
+  outline: 2px solid #f0ece4;
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE — TOUCH DEVICES & REDUCED MOTION
+   ========================================================================== */
+
+/* Touch devices: simplified animations */
+@media (hover: none) and (pointer: coarse) {
+  .ah-cursor,
+  .ah-cursor-dot {
+    display: none !important;
+  }
+
+  .ah-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .ah-card:hover::before {
+    opacity: 0;
+  }
+
+  .ah-magnetic:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .ah-parallax-hover img,
+  .ah-parallax-hover .ah-parallax-layer {
+    transform: none !important;
+  }
+
+  .ah-stagger-child {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .ah-reveal-text > span,
+  .ah-reveal-text > a {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+
+  .ah-divider-line::after {
+    transition: none;
+  }
+
+  .ah-link-hover::after {
+    transition: none;
+    transform: scaleX(1);
+    opacity: 0.5;
+  }
+
+  .ah-link-hover:hover::after {
+    opacity: 1;
+  }
+
+  .ah-page-transition.is-active {
+    animation-duration: 0.3s;
+  }
+
+  .ah-skeleton::after {
+    animation-duration: 2.4s;
+  }
+}
+
+/* Small screens: hide cursor, simplify some effects */
+@media (max-width: 768px) {
+  .ah-cursor,
+  .ah-cursor-dot {
+    display: none !important;
+  }
+
+  .ah-card:hover {
+    transform: none;
+  }
+
+  .ah-magnetic:hover {
+    transform: none;
+  }
+
+  .ah-parallax-hover img,
+  .ah-parallax-hover .ah-parallax-layer {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   PREFERS REDUCED MOTION — disable ALL animations
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ah-page-transition {
+    display: none !important;
+  }
+
+  .ah-cursor,
+  .ah-cursor-dot {
+    display: none !important;
+  }
+
+  .ah-card:hover,
+  .ah-project:hover,
+  .ah-magnetic:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .ah-card:hover::before,
+  .ah-card:hover::after,
+  .ah-project:hover::after {
+    display: none !important;
+  }
+
+  .ah-reveal-text > span,
+  .ah-reveal-text > a {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .ah-stagger-child {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .ah-divider-line::after {
+    transform: scaleX(1) !important;
+  }
+
+  .ah-skeleton::after {
+    animation: none !important;
+  }
+
+  .ah-parallax-hover img,
+  .ah-parallax-hover .ah-parallax-layer {
+    transform: none !important;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .ah-scroll-progress::after {
+    transition: none !important;
+  }
+
+  .ah-count-up .ah-count-value {
+    transform: none !important;
+  }
+
+  .ah-link-hover::after {
+    transition: none !important;
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
+  .ah-magnetic .ah-magnetic-content {
+    transition: none !important;
+  }
+
+  .ah-skip-link {
+    transition: none !important;
+  }
+}

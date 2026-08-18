@@ -1,0 +1,69 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AETHER HOUSE",
+    "description": "Premium studio for architecture, interiors, and spatial experiences in Lisbon, Portugal.",
+    "url": "https://aether-house.vercel.app",
+    "logo": "https://aether-house.vercel.app/assets/img/logos/aether-house-logo.png",
+    "sameAs": [],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "hello@aether-house.vercel.app"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lisbon",
+      "addressRegion": "Lisboa",
+      "addressCountry": "PT"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AETHER HOUSE",
+    "url": "https://aether-house.vercel.app",
+    "description": "Premium studio for architecture, interiors, and spatial experiences in Lisbon, Portugal.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://aether-house.vercel.app/projetos.html?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@type": "Architect",
+    "name": "AETHER HOUSE",
+    "description": "Premium studio for architecture, interiors, and spatial experiences in Lisbon, Portugal.",
+    "url": "https://aether-house.vercel.app",
+    "telephone": "+351-XXX-XXX-XXX",
+    "email": "hello@aether-house.vercel.app",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "[PREENCHER Endereço]",
+      "addressLocality": "Lisbon",
+      "addressRegion": "Lisboa",
+      "postalCode": "[PREENCHER CEP]",
+      "addressCountry": "PT"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 38.7223,
+      "longitude": -9.1393
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ],
+    "priceRange": "$$$$"
+  }
+]

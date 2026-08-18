@@ -16,9 +16,28 @@
   <link rel="stylesheet" href="assets/css/motion.css">
   <link rel="stylesheet" href="assets/css/experience.css">
   <link rel="stylesheet" href="assets/css/engine-modules.css">
+  <link rel="stylesheet" href="assets/css/motion-custom.css">
   <link rel="stylesheet" href="assets/css/aether.css">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","name":"AETHER HOUSE","description":"Premium studio for architecture, interiors, and spatial experiences in Lisbon, Portugal.","url":"https://aether-house.vercel.app","logo":"https://aether-house.vercel.app/assets/img/logos/aether-house-logo.png","contactPoint":{"@type":"ContactPoint","contactType":"customer service","email":"hello@aether-house.vercel.app"},"address":{"@type":"PostalAddress","addressLocality":"Lisbon","addressRegion":"Lisboa","addressCountry":"PT"}}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"AETHER HOUSE","url":"https://aether-house.vercel.app","description":"Premium studio for architecture, interiors, and spatial experiences in Lisbon, Portugal."}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":["LocalBusiness","Architect"],"name":"AETHER HOUSE","description":"Premium studio for architecture, interiors, and spatial experiences in Lisbon, Portugal.","url":"https://aether-house.vercel.app","email":"hello@aether-house.vercel.app","address":{"@type":"PostalAddress","addressLocality":"Lisbon","addressRegion":"Lisboa","addressCountry":"PT"},"geo":{"@type":"GeoCoordinates","latitude":38.7223,"longitude":-9.1393},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00"},"priceRange":"$$$$"}
+    </script>
+    <link rel="prefetch" href="sobre.html" as="document">
+    <link rel="prefetch" href="projetos.html" as="document">
+    <link rel="prefetch" href="servicos.html" as="document">
+    <link rel="prefetch" href="contato.html" as="document">
 </head>
 <body>
+
+  <div class="ah-page-transition" aria-hidden="true"></div>
+  <div class="ah-cursor" aria-hidden="true"></div>
+  <div class="ah-cursor-dot" aria-hidden="true"></div>
+  <div class="ah-scroll-progress" aria-hidden="true"></div>
 
   <!-- ============================================================
        HEADER
@@ -579,5 +598,64 @@
   <script src="assets/js/motion.js" defer></script>
   <script src="assets/js/interactions.js" defer></script>
   <script src="assets/js/architectural-scene.js" defer></script>
+  <script>
+    (function () {
+      /* Scroll progress */
+      var bar = document.querySelector('.ah-scroll-progress');
+      if (bar) {
+        var ticking = false;
+        window.addEventListener('scroll', function () {
+          if (!ticking) {
+            requestAnimationFrame(function () {
+              var h = document.documentElement;
+              var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+              bar.style.setProperty('--scroll-progress', pct + '%');
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+
+      /* Custom cursor (desktop only) */
+      var cursor = document.querySelector('.ah-cursor');
+      var dot = document.querySelector('.ah-cursor-dot');
+      if (cursor && dot && matchMedia('(hover: hover)').matches) {
+        var mx = 0, my = 0, cx = 0, cy = 0;
+        document.addEventListener('mousemove', function (e) {
+          mx = e.clientX; my = e.clientY;
+          dot.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
+        });
+        (function loop() {
+          cx += (mx - cx) * 0.12;
+          cy += (my - cy) * 0.12;
+          cursor.style.transform = 'translate(' + cx + 'px,' + cy + 'px)';
+          requestAnimationFrame(loop);
+        })();
+        document.querySelectorAll('a, button, [role="button"], input, textarea, select').forEach(function (el) {
+          el.addEventListener('mouseenter', function () { cursor.classList.add('is-hover'); });
+          el.addEventListener('mouseleave', function () { cursor.classList.remove('is-hover'); });
+        });
+      } else {
+        if (cursor) cursor.style.display = 'none';
+        if (dot) dot.style.display = 'none';
+      }
+
+      /* Page transition on nav links */
+      var overlay = document.querySelector('.ah-page-transition');
+      if (overlay) {
+        document.querySelectorAll('.ah-nav__link, .ah-cta, a[href$=".html"]').forEach(function (link) {
+          link.addEventListener('click', function (e) {
+            var href = this.getAttribute('href');
+            if (href && href.endsWith('.html') && !e.ctrlKey && !e.metaKey) {
+              e.preventDefault();
+              overlay.classList.add('is-active');
+              setTimeout(function () { window.location.href = href; }, 450);
+            }
+          });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

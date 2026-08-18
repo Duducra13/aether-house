@@ -8,3 +8,6 @@ assets/img/referencias/
 assets/gif/
 assets/video/
 .vercel
+
+qa-*.png
+qa-test.js
