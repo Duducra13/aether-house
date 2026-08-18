@@ -28,11 +28,14 @@
     try {
       renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
     } catch (e) {
+      console.warn("[AH-3D] WebGLRenderer FAILED:", e.message);
       var fb = host.querySelector("[data-fallback]");
       if (fb) fb.removeAttribute("hidden");
       host.classList.add("is-fallback");
       return;
     }
+
+    console.log("[AH-3D] Renderer created, canvas=" + renderer.domElement.width + "x" + renderer.domElement.height);
 
     renderer.setPixelRatio(CCS.clampDPR());
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -261,6 +264,8 @@
 
     scene.add(building);
 
+    console.log("[AH-3D] Scene built: children=" + scene.children.length + ", building meshes=" + building.children.length);
+
     /* Clock */
     clock = new THREE.Clock();
 
@@ -325,10 +330,13 @@
     if (scrollDriven) wireScroll();
 
     /* Animation loop */
+    var frameCount = 0;
     (function tick() {
       if (disposed) return;
       requestAnimationFrame(tick);
       var t = clock.getElapsedTime();
+      frameCount++;
+      if (frameCount <= 3) console.log("[AH-3D] tick #" + frameCount + " t=" + t.toFixed(2));
 
       if (building) {
         /* Smooth drag rotation */
@@ -357,6 +365,7 @@
       }
 
       renderer.render(scene, camera);
+      if (frameCount <= 3) console.log("[AH-3D] rendered frame #" + frameCount + " canvas=" + renderer.domElement.width + "x" + renderer.domElement.height);
     })();
 
     /* Cleanup */
