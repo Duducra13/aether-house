@@ -128,7 +128,7 @@
       normalScale: new THREE.Vector2(0.3, 0.3),
       roughness: 0.82,
       metalness: 0.04,
-      color: 0x3a3630
+      color: 0x9a9590
     });
 
     var darkConcrete = new THREE.MeshStandardMaterial({
@@ -137,14 +137,14 @@
       normalScale: new THREE.Vector2(0.2, 0.2),
       roughness: 0.88,
       metalness: 0.02,
-      color: 0x2a2722
+      color: 0x7a7570
     });
 
     var lightConcrete = new THREE.MeshStandardMaterial({
       map: concreteMap,
       roughness: 0.78,
       metalness: 0.03,
-      color: 0x4a4640
+      color: 0xb0aaa4
     });
 
     var glassMat = new THREE.MeshPhysicalMaterial({
@@ -174,14 +174,14 @@
       map: woodMap,
       roughness: 0.65,
       metalness: 0.0,
-      color: 0x7a6550
+      color: 0xb09570
     });
 
     var darkWood = new THREE.MeshStandardMaterial({
       map: woodMap,
       roughness: 0.7,
       metalness: 0.0,
-      color: 0x3d2e22
+      color: 0x7a6550
     });
 
     var goldAccent = new THREE.MeshStandardMaterial({
@@ -207,31 +207,31 @@
     });
 
     var groundMat = new THREE.MeshStandardMaterial({
-      color: 0x121110,
+      color: 0x8a8580,
       roughness: 0.95,
       metalness: 0.0
     });
 
     var stonePathMat = new THREE.MeshStandardMaterial({
-      color: 0x302c28,
+      color: 0x9a9590,
       roughness: 0.85,
       metalness: 0.02
     });
 
     var hedgeMat = new THREE.MeshStandardMaterial({
-      color: 0x2a3a24,
+      color: 0x5a7a4a,
       roughness: 0.92,
       metalness: 0.0
     });
 
     var grassMat = new THREE.MeshStandardMaterial({
-      color: 0x1c2a18,
+      color: 0x4a6a3a,
       roughness: 0.95,
       metalness: 0.0
     });
 
     var waterMat = new THREE.MeshPhysicalMaterial({
-      color: 0x0e2233,
+      color: 0x3388aa,
       roughness: 0.0,
       metalness: 0.15,
       transmission: 0.5,
@@ -247,26 +247,26 @@
     });
 
     var sofaMat = new THREE.MeshStandardMaterial({
-      color: 0x3a3530,
+      color: 0x8a8078,
       roughness: 0.75,
       metalness: 0.0
     });
 
     var tableMat = new THREE.MeshStandardMaterial({
       map: woodMap,
-      color: 0x5a4a38,
+      color: 0xa08a70,
       roughness: 0.5,
       metalness: 0.05
     });
 
     var rugMat = new THREE.MeshStandardMaterial({
-      color: 0x2a2218,
+      color: 0x7a7068,
       roughness: 0.95,
       metalness: 0.0
     });
 
     var terraceFloorMat = new THREE.MeshStandardMaterial({
-      color: 0x3a3630,
+      color: 0x9a9590,
       roughness: 0.75,
       metalness: 0.02,
       map: concreteMap
@@ -621,7 +621,7 @@
     bAdd(new THREE.BoxGeometry(0.035, 0.035, 2.2), goldAccent, 6.75, 0.42, 0);
 
     /* Pool light glow (underwater) */
-    var poolLight = new THREE.PointLight(0x2255aa, 1.5, 6);
+    var poolLight = new THREE.PointLight(0x44aadd, 2.5, 8);
     poolLight.position.set(4.5, 0.1, 0);
     building.add(poolLight);
 
@@ -755,7 +755,7 @@
     var interiorLights = [];
 
     function addInteriorLight(x, y, z, intensity, color) {
-      var pl = new THREE.PointLight(color || 0xffaa66, intensity || 1.2, 6);
+      var pl = new THREE.PointLight(color || 0xffaa66, intensity || 1.2, 10);
       pl.position.set(x, y, z);
       if (!isReduced) pl.castShadow = false;
       building.add(pl);
@@ -775,26 +775,29 @@
     }
 
     /* Ground floor main room */
-    addInteriorLight(0, 2.2, 0, 1.5, 0xffaa66);
-    addInteriorLight(-1.8, 2.2, 0.3, 0.8, 0xffcc88);
-    addInteriorLight(1.5, 2.2, 1.0, 0.6, 0xffbb77);
+    addInteriorLight(0, 2.2, 0, 2.0, 0xffaa66);
+    addInteriorLight(-1.8, 2.2, 0.3, 1.2, 0xffcc88);
+    addInteriorLight(1.5, 2.2, 1.0, 1.0, 0xffbb77);
 
     /* Second floor */
-    addInteriorLight(-0.3, 4.5, 0.8, 1.2, 0xffaa66);
-    addInteriorLight(1.5, 4.5, -0.5, 0.5, 0xffcc88);
+    addInteriorLight(-0.3, 4.5, 0.8, 1.8, 0xffaa66);
+    addInteriorLight(1.5, 4.5, -0.5, 0.8, 0xffcc88);
 
     /* Entry porch */
-    addInteriorLight(0, 2.2, 1.8, 0.8, 0xffddaa);
+    addInteriorLight(0, 2.2, 1.8, 1.2, 0xffddaa);
 
     /* --------------------------------------------------------
        KEY LIGHTING
        -------------------------------------------------------- */
-    var hemi = new THREE.HemisphereLight(0xf0ece4, 0x8b7355, 0.7);
+    var ambient = new THREE.AmbientLight(0xfff8f0, 0.4);
+    scene.add(ambient);
+
+    var hemi = new THREE.HemisphereLight(0xffffff, 0xb0a898, 1.2);
     scene.add(hemi);
 
-    /* Moonlight / key light — cool blue tint */
-    var key = new THREE.DirectionalLight(0xc8d0e8, 1.2);
-    key.position.set(8, 12, 6);
+    /* Key light — warm sunlight */
+    var key = new THREE.DirectionalLight(0xfff5e8, 2.0);
+    key.position.set(8, 14, 6);
     key.castShadow = !isReduced;
     key.shadow.mapSize.set(2048, 2048);
     key.shadow.camera.near = 1;
@@ -808,22 +811,22 @@
     scene.add(key);
 
     /* Warm fill from interior direction */
-    var fill = new THREE.DirectionalLight(0xc9a96e, 0.35);
+    var fill = new THREE.DirectionalLight(0xffe8cc, 0.8);
     fill.position.set(-3, 4, -5);
     scene.add(fill);
 
     /* Gold rim light */
-    var rim = new THREE.PointLight(0xc9a96e, 0.7, 25);
+    var rim = new THREE.PointLight(0xc9a96e, 1.2, 30);
     rim.position.set(-5, 6, 5);
     scene.add(rim);
 
     /* Cool accent from opposite side */
-    var coolRim = new THREE.PointLight(0x4466aa, 0.4, 20);
+    var coolRim = new THREE.PointLight(0x88aadd, 0.6, 25);
     coolRim.position.set(6, 4, -4);
     scene.add(coolRim);
 
-    /* Warm bounce from ground level (simulates reflected interior light) */
-    var bounce = new THREE.PointLight(0xffaa66, 0.3, 8);
+    /* Warm bounce from ground level */
+    var bounce = new THREE.PointLight(0xffddaa, 0.6, 12);
     bounce.position.set(0, 0.3, 3);
     scene.add(bounce);
 
