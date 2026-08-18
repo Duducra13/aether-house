@@ -54,7 +54,9 @@
 
     /* Carrega um ES module (com fallback de origem) */
     loadModule: function (src) {
-      return import(src);
+      if (/^(https?:|data:|\.)/.test(src)) return import(src);
+      var abs = new URL(src, window.location.href).href;
+      return import(abs);
     },
 
     /* Helper: multiplicador de DPR limitado (performance) */
