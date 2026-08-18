@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-motion-preset="luxury">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — AETHER HOUSE</title>
+  <meta name="description" content="Get in touch with AETHER HOUSE. Start your next architectural project with our premium studio in Lisbon, Portugal.">
+  <meta property="og:title" content="Contact — AETHER HOUSE">
+  <meta property="og:description" content="Start your next architectural project with AETHER HOUSE. Premium studio in Lisbon, Portugal.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/logos/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
+  <link rel="stylesheet" href="assets/css/experience.css">
+  <link rel="stylesheet" href="assets/css/engine-modules.css">
+  <link rel="stylesheet" href="assets/css/aether.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="header ah-header" role="banner">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html" class="nav__brand" aria-label="AETHER HOUSE home">
+        <span class="ah-logo">AETHER<br>HOUSE</span>
+      </a>
+      <div class="nav__menu" id="nav-menu">
+        <a href="index.html" class="nav__link ah-nav-link">Home</a>
+        <a href="sobre.html" class="nav__link ah-nav-link">About</a>
+        <a href="projetos.html" class="nav__link ah-nav-link">Projects</a>
+        <a href="servicos.html" class="nav__link ah-nav-link">Services</a>
+        <a href="contato.html" class="nav__cta ah-btn-nav is-active">Start a Project</a>
+      </div>
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         01 — CONTACT HERO
+         ============================================================ -->
+    <section class="ah-page-hero">
+      <div class="ah-container">
+        <div class="ah-page-hero__content" data-stagger>
+          <p class="ah-kicker" data-reveal>Get in Touch</p>
+          <h1 class="ah-page-hero__title" data-split="chars">Contact</h1>
+          <p class="ah-page-hero__subtitle" data-reveal>Let's start a conversation about your next project.</p>
+        </div>
+      </div>
+      <div class="ah-page-hero__frame" aria-hidden="true">
+        <span class="ah-frame-line ah-frame-line--top"></span>
+        <span class="ah-frame-line ah-frame-line--right"></span>
+        <span class="ah-frame-line ah-frame-line--bottom"></span>
+        <span class="ah-frame-line ah-frame-line--left"></span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         02 — CONTACT GRID
+         ============================================================ -->
+    <section class="ah-contact">
+      <div class="ah-container">
+        <div class="ah-contact__grid" data-stagger>
+
+          <!-- Left: Form -->
+          <div class="ah-contact__form" data-reveal>
+            <div class="ah-contact__form-header">
+              <h2 class="ah-section-title ah-section-title--sm" data-split>Send a<br>Message</h2>
+              <p class="ah-body-text">Tell us about your vision. We'll respond within 24 hours.</p>
+            </div>
+
+            <form data-ccs-form data-ccs-fake data-ccs-delay="1200" action="/submit" class="ah-form">
+              <div class="form-field ah-field">
+                <label for="name" class="ah-field__label">Name *</label>
+                <input type="text" id="name" name="name" required class="ah-field__input" autocomplete="name">
+                <span class="form-field__error ah-field__error"></span>
+              </div>
+              <div class="form-field ah-field">
+                <label for="email" class="ah-field__label">Email *</label>
+                <input type="email" id="email" name="email" required class="ah-field__input" autocomplete="email">
+                <span class="form-field__error ah-field__error"></span>
+              </div>
+              <div class="form-field ah-field">
+                <label for="company" class="ah-field__label">Company</label>
+                <input type="text" id="company" name="company" class="ah-field__input" autocomplete="organization">
+                <span class="form-field__error ah-field__error"></span>
+              </div>
+              <div class="form-field ah-field">
+                <label for="project" class="ah-field__label">Project Type</label>
+                <select id="project" name="project" class="ah-field__input">
+                  <option value="">Select a type</option>
+                  <option value="residential">Residential</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="hospitality">Hospitality</option>
+                  <option value="cultural">Cultural</option>
+                  <option value="experience">Experience</option>
+                </select>
+                <span class="form-field__error ah-field__error"></span>
+              </div>
+              <div class="form-field ah-field">
+                <label for="message" class="ah-field__label">Message *</label>
+                <textarea id="message" name="message" required rows="5" class="ah-field__input ah-field__textarea"></textarea>
+                <span class="form-field__error ah-field__error"></span>
+              </div>
+              <div data-ccs-form-status class="ah-form-status"></div>
+              <button type="submit" class="btn btn--primary btn--lg" data-magnetic>
+                <span>Send Message</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Right: Contact Info -->
+          <div class="ah-contact__info" data-reveal>
+            <div class="ah-contact__info-header">
+              <h2 class="ah-section-title ah-section-title--sm" data-split>Studio<br>Details</h2>
+            </div>
+
+            <div class="ah-contact__items" data-stagger>
+              <div class="ah-contact__item" data-reveal>
+                <span class="ah-contact__item-label">Email</span>
+                <a href="mailto:hello@aetherhouse.studio" class="ah-contact__item-value">hello@aetherhouse.studio</a>
+              </div>
+
+              <div class="ah-contact__item" data-reveal>
+                <span class="ah-contact__item-label">Phone</span>
+                <a href="tel:+351912345678" class="ah-contact__item-value">+351 912 345 678</a>
+              </div>
+
+              <div class="ah-contact__item" data-reveal>
+                <span class="ah-contact__item-label">Address</span>
+                <span class="ah-contact__item-value">Rua da Architetura 42<br>1200-001 Lisbon, Portugal</span>
+              </div>
+
+              <div class="ah-contact__item" data-reveal>
+                <span class="ah-contact__item-label">Hours</span>
+                <span class="ah-contact__item-value">Monday — Friday<br>9:00 AM — 6:00 PM (WET)</span>
+              </div>
+            </div>
+
+            <div class="ah-contact__social" data-reveal>
+              <span class="ah-contact__social-label">Follow</span>
+              <div class="ah-contact__social-links">
+                <a href="#" class="ah-contact__social-link" data-magnetic aria-label="Instagram">Instagram</a>
+                <a href="#" class="ah-contact__social-link" data-magnetic aria-label="LinkedIn">LinkedIn</a>
+                <a href="#" class="ah-contact__social-link" data-magnetic aria-label="Behance">Behance</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         03 — MAP / LOCATION
+         ============================================================ -->
+    <section class="ah-location" data-reveal>
+      <div class="ah-container">
+        <div class="ah-location__inner" data-stagger>
+          <p class="ah-kicker" data-reveal>Location</p>
+          <h2 class="ah-section-title" data-split>Find<br>Us</h2>
+          <div class="ah-location__map ah-img-placeholder" style="--aspect:16/9;background:linear-gradient(135deg,#1e1c18 0%,#2a2722 50%,#161412 100%)" role="img" aria-label="Map showing AETHER HOUSE studio location in Lisbon, Portugal">
+            <span class="ah-location__map-label">Lisbon, Portugal</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         04 — CTA
+         ============================================================ -->
+    <section class="ah-cta">
+      <div class="ah-container">
+        <div class="ah-cta__inner" data-stagger>
+          <h2 class="ah-cta__title" data-split>Let's shape<br>the next space.</h2>
+          <div class="ah-cta__actions" data-reveal>
+            <a href="projetos.html" class="btn btn--primary btn--lg ah-btn-cta" data-magnetic data-tilt>
+              <span>View Our Work</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer ah-footer" role="contentinfo">
+    <div class="ah-container">
+      <div class="ah-footer__top">
+        <div class="ah-footer__brand">
+          <span class="ah-logo ah-logo--footer">AETHER<br>HOUSE</span>
+          <p class="ah-footer__tagline">Architecture for the senses.</p>
+        </div>
+        <div class="ah-footer__links">
+          <div class="ah-footer__col">
+            <h4 class="ah-footer__heading">Navigation</h4>
+            <a href="index.html" class="ah-footer__link">Home</a>
+            <a href="sobre.html" class="ah-footer__link">About</a>
+            <a href="projetos.html" class="ah-footer__link">Projects</a>
+            <a href="servicos.html" class="ah-footer__link">Services</a>
+            <a href="contato.html" class="ah-footer__link">Contact</a>
+          </div>
+          <div class="ah-footer__col">
+            <h4 class="ah-footer__heading">Contact</h4>
+            <a href="mailto:hello@aetherhouse.studio" class="ah-footer__link">hello@aetherhouse.studio</a>
+            <span class="ah-footer__link">+351 912 345 678</span>
+          </div>
+          <div class="ah-footer__col">
+            <h4 class="ah-footer__heading">Location</h4>
+            <span class="ah-footer__link">Rua da Architetura 42</span>
+            <span class="ah-footer__link">1200-001 Lisbon, Portugal</span>
+          </div>
+          <div class="ah-footer__col">
+            <h4 class="ah-footer__heading">Follow</h4>
+            <a href="#" class="ah-footer__link">Instagram</a>
+            <a href="#" class="ah-footer__link">LinkedIn</a>
+            <a href="#" class="ah-footer__link">Behance</a>
+          </div>
+        </div>
+      </div>
+      <div class="ah-footer__bottom">
+        <span>© <span data-year></span> AETHER HOUSE. All rights reserved.</span>
+        <span class="ah-footer__credit">Designed with CCS Engine</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Progress -->
+  <div class="ah-scroll-progress" data-scroll-progress="bar"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/engine/ccs.core.js" defer></script>
+  <script src="assets/js/engine/ccs.experience.js" defer></script>
+  <script src="assets/js/engine/ccs.motion-enhance.js" defer></script>
+  <script src="assets/js/engine/ccs.motion.js" defer></script>
+  <script src="assets/js/engine/ccs.gallery.js" defer></script>
+  <script src="assets/js/engine/ccs.forms.js" defer></script>
+  <script src="assets/js/engine/ccs.transitions.js" defer></script>
+  <script src="assets/js/engine/ccs.loader.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+  <script src="assets/js/interactions.js" defer></script>
+</body>
+</html>

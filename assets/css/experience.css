@@ -1,0 +1,249 @@
+/* ============================================================
+   CCS WEB EXPERIENCE ENGINE — experience.css
+   ------------------------------------------------------------
+   Camada de EXPERIÊNCIA (2.5D e 3D). Incluída em index.html e
+   experiencias.html. Nenhuma regra aqui é essencial para o
+   conteúdo — tudo tem fallback visível.
+
+   Componentes:
+     .shell / .ccs-3d__*   — invólucro de cena 3D (Three.js)
+     .parallax-layers      — composição 2.5D (imagem em camadas)
+     .scroll-story         — trilho horizontal fixado (GSAP)
+     [data-scrub]          — estados iniciais para GSAP
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   3D SHELL — invólucro da cena + fallback
+   ------------------------------------------------------------ */
+.shell {
+  position: relative;
+  width: 100%;
+  min-height: var(--shell-min-height);
+  aspect-ratio: var(--shell-aspect);
+  border-radius: var(--shell-radius);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 120% at 20% 10%, var(--color-surface) 0%, var(--color-surface-2) 55%, var(--color-border) 100%);
+  isolation: isolate;
+}
+
+/* Variante dirigida pelo scroll ([data-scroll-stage]): altura
+   maior para o progresso ser perceptível durante o scroll. */
+.shell--scroll {
+  min-height: 140vh;
+  aspect-ratio: auto;
+}
+
+.shell canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: pan-y;
+}
+
+/* UI sobre o canvas (seletor, carregando, info) */
+.shell__ui {
+  position: relative;
+  z-index: var(--z-shell-ui);
+  pointer-events: none;
+}
+
+.shell__ui button,
+.shell__ui a { pointer-events: auto; }
+
+.shell__pick {
+  position: absolute;
+  left: var(--space-4);
+  bottom: var(--space-4);
+  z-index: var(--z-shell-ui);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  pointer-events: none;
+}
+
+.shell__pick button {
+  pointer-events: auto;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  color: var(--color-text);
+  font: 600 var(--text-small)/1 var(--font-body);
+  cursor: pointer;
+  transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
+}
+
+.shell__pick button:hover { background: var(--color-surface-2); }
+
+.shell__pick button.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-on-dark);
+}
+
+.shell__info {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: var(--z-shell-ui);
+  max-width: 60%;
+  text-align: right;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: var(--leading-normal);
+}
+
+/* Indicador de carregamento */
+.shell__loading {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-shell-ui);
+  display: grid;
+  place-items: center;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.shell__loading::after {
+  content: "";
+  width: 28px;
+  height: 28px;
+  margin-top: var(--space-2);
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: ccs-spin 900ms linear infinite;
+}
+
+/* Fallback elegante — aparece quando não há WebGL/rede/modelo.
+   NUNCA mostra "3D indisponível": o shell continua apresentável
+   com uma representação estática 2.5D do produto (SVG temático).
+   Regra: o fallback parece intencional, nunca uma quebra. */
+.shell [data-fallback] {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-shell-fallback);
+  display: grid;
+  place-items: center;
+  padding: var(--space-5);
+  background:
+    radial-gradient(120% 120% at 20% 10%, var(--color-surface) 0%, var(--color-surface-2) 55%, var(--color-border) 100%);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.shell__fallback {
+  display: grid;
+  place-items: center;
+  gap: var(--space-4);
+  max-width: 100%;
+}
+
+.shell__fallback-art {
+  width: min(58%, 280px);
+  height: auto;
+  filter: drop-shadow(0 18px 30px rgb(0 0 0 / 0.22));
+}
+
+.shell__fallback-note {
+  margin: 0;
+  font-size: var(--text-small);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.shell [data-fallback][hidden] { display: none; }
+
+.shell.is-fallback .shell__loading,
+.shell.is-fallback canvas { display: none; }
+
+/* ------------------------------------------------------------
+   2.5D — composição em camadas com parallax (data-parallax-depth)
+   Requer que cada camada tenha tamanho conhecido (padding no
+   container). Regra: conteúdo sempre acessível mesmo parado.
+   ------------------------------------------------------------ */
+.parallax-layers {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--shell-radius);
+  isolation: isolate;
+}
+
+.layer {
+  position: absolute;
+  inset: -12%; /* folga para o movimento não abrir bordas */
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+.layer--0 { z-index: 1; } /* fundo */
+.layer--1 { z-index: 2; } /* meio */
+.layer--2 { z-index: 3; } /* frente */
+
+/* Sem JS (ou reduced-motion): tudo parado, camadas centralizadas */
+.layer { transform: translate(0, 0); }
+
+html.js.reduced-motion .layer,
+html.js:not(.gsap-ready) .layer { transform: none !important; }
+
+/* ------------------------------------------------------------
+   SCROLL STORY — trilho horizontal fixado (data-horizontal)
+   ------------------------------------------------------------ */
+.scroll-story {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-story__track {
+  display: flex;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--gutter);
+  will-change: transform;
+}
+
+.scroll-story__slide {
+  flex: 0 0 min(72vw, 30rem);
+  min-height: 60vh;
+  display: grid;
+  place-content: center;
+  padding: var(--space-7);
+  border-radius: var(--radius-rounded);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  outline: none;
+}
+
+.scroll-story__slide:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-focus);
+}
+
+/* Quando o GSAP fixa a seção, o conteúdo interno ganha altura */
+html.gsap-ready [data-horizontal] .scroll-story__track {
+  min-width: max-content;
+}
+
+/* ------------------------------------------------------------
+   SCRUB — o JS (ccs.motion-enhance) define os from() via gsap.
+   Sem GSAP (ou em reduced-motion) tudo permanece VISÍVEL por
+   padrão. A classe `gsap-ready` só é aplicada quando GSAP +
+   ScrollTrigger carregaram e foram registrados com sucesso.
+   ------------------------------------------------------------ */
+[data-step] { opacity: 1; }
+html.js.gsap-ready [data-step] { opacity: 0; }
+
+/* ------------------------------------------------------------
+   PREFERS-REDUCED-MOTION — garante tudo estático
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .shell__loading::after { animation: none; }
+  html.js.gsap-ready [data-step] { opacity: 1; }
+  .scroll-story__track { transform: none !important; }
+}

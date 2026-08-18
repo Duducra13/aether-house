@@ -1,0 +1,293 @@
+/* ============================================================
+   CCS WEB EXPERIENCE ENGINE — módulos (gallery, forms, vt)
+   ------------------------------------------------------------
+   Estilos dos módulos ccs.gallery.js, ccs.forms.js e
+   ccs.transitions.js. Usam APENAS tokens do design system.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   CAROUSEL — [data-gallery="carousel"]
+   ------------------------------------------------------------ */
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel__track {
+  display: flex;
+  transition: transform var(--motion-slow) var(--ease-out);
+  will-change: transform;
+}
+
+.carousel__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.carousel__slide img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel__prev,
+.carousel__next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, .55);
+  color: var(--color-surface);
+  font-size: 1.4rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel__prev:disabled,
+.carousel__next:disabled { opacity: .4; cursor: default; }
+
+.carousel__prev { left: var(--space-4); }
+.carousel__next { right: var(--space-4); }
+
+.carousel__dots {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  padding: var(--space-4) 0 0;
+}
+
+.carousel__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+  border: 0;
+  transition: background var(--motion-fast) var(--ease-out), width var(--motion-fast) var(--ease-out);
+}
+
+.carousel__dot.is-active {
+  background: var(--color-accent);
+  width: 26px;
+}
+
+.carousel__progress {
+  height: 3px;
+  background: var(--color-border);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-top: var(--space-4);
+}
+
+.carousel__progress > span {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+.carousel__counter {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  margin-top: var(--space-2);
+}
+
+/* ------------------------------------------------------------
+   LIGHTBOX — dialog criado por ccs.gallery.js
+   ------------------------------------------------------------ */
+.ccs-lightbox {
+  border: 0;
+  padding: var(--space-5);
+  background: rgba(0, 0, 0, .88);
+  color: var(--color-on-dark);
+  max-width: 94vw;
+  max-height: 92vh;
+  width: min(94vw, 1100px);
+}
+
+.ccs-lightbox::backdrop { background: rgba(0, 0, 0, .82); }
+
+.ccs-lightbox__stage {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.ccs-lightbox__img {
+  max-width: 100%;
+  max-height: 74vh;
+  margin-inline: auto;
+  border-radius: var(--radius-subtle);
+  object-fit: contain;
+}
+
+.ccs-lightbox__caption {
+  text-align: center;
+  color: var(--color-on-dark-muted);
+  font-size: var(--text-small);
+}
+
+.ccs-lightbox__close,
+.ccs-lightbox__prev,
+.ccs-lightbox__next {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, .12);
+  color: var(--color-on-dark);
+  font-size: 1.4rem;
+  line-height: 1;
+  z-index: 2;
+}
+
+.ccs-lightbox__close { top: var(--space-3); right: var(--space-3); }
+.ccs-lightbox__prev { top: 50%; left: var(--space-3); transform: translateY(-50%); }
+.ccs-lightbox__next { top: 50%; right: var(--space-3); transform: translateY(-50%); }
+
+.ccs-lightbox__count {
+  text-align: center;
+  color: var(--color-on-dark-muted);
+  font-size: var(--text-small);
+  margin-top: var(--space-3);
+}
+
+/* ------------------------------------------------------------
+   BEFORE / AFTER — [data-gallery="beforeafter"]
+   ------------------------------------------------------------ */
+.ba {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-subtle);
+  touch-action: none;
+}
+
+.ba img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ba__after,
+.ba__before { position: absolute; inset: 0; }
+
+.ba__before {
+  clip-path: inset(0 50% 0 0);
+}
+
+.ba__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-on-dark);
+  left: 50%;
+  cursor: ew-resize;
+}
+
+.ba__handle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background: var(--color-on-dark);
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.ba[aria-valuenow]:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------
+   ZOOM — [data-zoom]
+   ------------------------------------------------------------ */
+[data-zoom] {
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+[data-zoom] img {
+  display: block;
+  width: 100%;
+  transition: transform var(--motion-slow) var(--ease-out);
+  will-change: transform;
+}
+
+[data-zoom].is-zoomed img { transform: scale(1.6); }
+
+/* ------------------------------------------------------------
+   FORMS — estados (ccs.forms.js)
+   ------------------------------------------------------------ */
+.ccs-form-status {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-subtle);
+  font-size: var(--text-small);
+}
+
+.ccs-form-status--error { background: color-mix(in srgb, var(--color-error) 12%, transparent); color: var(--color-error); }
+.ccs-form-status--success { background: color-mix(in srgb, var(--color-success) 12%, transparent); color: var(--color-success); }
+.ccs-form-status--loading { color: var(--color-text-muted); }
+
+.form-field { position: relative; }
+.form-field.has-error input,
+.form-field.has-error textarea,
+.form-field.has-error select { border-color: var(--color-error); }
+.form-field.has-error .form-field__error { display: block; }
+
+.form-field__error {
+  display: none;
+  color: var(--color-error);
+  font-size: var(--text-small);
+  margin-top: var(--space-1);
+}
+
+form.is-loading { opacity: .65; pointer-events: none; }
+
+form.is-loading [type="submit"]::after {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: var(--space-2);
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-pill);
+  animation: ccs-spin .7s linear infinite;
+  vertical-align: -2px;
+}
+
+@keyframes ccs-spin { to { transform: rotate(360deg); } }
+
+/* ------------------------------------------------------------
+   VIEW TRANSITIONS (ccs.transitions.js)
+   Só aplica onde a API existe (html.vt). Efeito opcional e sutil;
+   a API respeita prefers-reduced-motion sozinha.
+   ------------------------------------------------------------ */
+html.vt ::view-transition-old(root) {
+  animation: ccs-vt-out 220ms var(--ease-out) both;
+}
+
+html.vt ::view-transition-new(root) {
+  animation: ccs-vt-in 320ms var(--ease-out) both;
+}
+
+@keyframes ccs-vt-out { to { opacity: 0; } }
+@keyframes ccs-vt-in { from { opacity: 0; transform: translateY(8px); } }

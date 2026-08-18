@@ -1,0 +1,313 @@
+/* ============================================================
+   MOTION — ver biblioteca/motion/regras.md
+   ------------------------------------------------------------
+   Técnica progressiva: o conteúdo nasce VISÍVEL. Só quando o
+   JS adiciona a classe `js` ao <html> é que os elementos com
+   data-reveal são ocultados para depois serem revelados. Se o
+   JS falhar, o site permanece totalmente acessível.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   REVEAL — entrada sutil no scroll (deslocamento 16px, fade)
+   O preset ativo pode ajustar distância, duração e easing via
+   custom properties (ver ccs.motion.js / tokens.css).
+   ------------------------------------------------------------ */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--motion-reveal-y, 16px));
+  filter: blur(var(--motion-entrance-blur, 0px));
+  transition:
+    opacity var(--motion-duration, var(--motion-slow)) var(--motion-ease, var(--ease-out)),
+    transform var(--motion-duration, var(--motion-slow)) var(--motion-ease, var(--ease-out)),
+    filter var(--motion-duration, var(--motion-slow)) var(--motion-ease, var(--ease-out));
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* Stagger: o JS preenche --reveal-delay nos filhos de [data-stagger] */
+[data-stagger] > * {
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Variantes de direção */
+html.js [data-reveal="left"] { transform: translateX(calc(var(--motion-reveal-y, 16px) * -1.5)); }
+html.js [data-reveal="right"] { transform: translateX(calc(var(--motion-reveal-y, 16px) * 1.5)); }
+html.js [data-reveal="scale"] { transform: scale(var(--motion-entrance-scale, .96)); }
+
+/* ------------------------------------------------------------
+   SPLIT TEXT — [data-split] (palavras/caracteres/linhas)
+   Técnica progressiva: só com a classe `js` os trechos ficam
+   ocultos; sem JS o texto permanece legível. A revelação ocorre
+   quando .is-split é adicionado (IntersectionObserver).
+   ------------------------------------------------------------ */
+html.js [data-split] .split-inner {
+  display: inline-block;
+  transform: translateY(calc(var(--motion-reveal-y, 16px) * 1.2));
+  opacity: 0;
+  filter: blur(var(--motion-entrance-blur, 0px));
+  transition:
+    opacity var(--motion-duration, var(--motion-slow)) var(--motion-ease, var(--ease-out)),
+    transform var(--motion-duration, var(--motion-slow)) var(--motion-ease, var(--ease-out)),
+    filter var(--motion-duration, var(--motion-slow)) var(--motion-ease, var(--ease-out));
+  transition-delay: var(--split-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+html.js [data-split].is-split .split-inner {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+[data-split] .split-word,
+[data-split] .split-char,
+[data-split] .split-line {
+  display: inline-block;
+  white-space: nowrap;
+}
+[data-split] .split-line { display: block; }
+[data-split] .split-space { white-space: pre; }
+
+/* ------------------------------------------------------------
+   STORYTELLING — [data-story] + [data-scene]
+   Cenas alternam por scroll (modo vanilla via .is-active) ou
+   animam com GSAP (data-pin). Em reduced-motion/touch todas
+   ficam visíveis.
+   ------------------------------------------------------------ */
+[data-story] { position: relative; }
+
+.story__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--color-background);
+  transition: background-color var(--motion-slow) var(--ease-out);
+}
+
+[data-story] .story__scene {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(var(--motion-reveal-y, 16px));
+  transition:
+    opacity var(--motion-duration, var(--motion-slow)) var(--motion-ease, var(--ease-out)),
+    visibility var(--motion-duration, var(--motion-slow)) var(--motion-ease, var(--ease-out)),
+    transform var(--motion-duration, var(--motion-slow)) var(--motion-ease, var(--ease-out));
+}
+
+[data-story] .story__scene.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+[data-story][data-active="all"] .story__scene {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* GSAP (data-pin): o próprio JS controla autoAlpha/transform */
+html.gsap [data-story][data-pin] .story__scene {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: none;
+}
+
+/* ------------------------------------------------------------
+   SCROLL PROGRESS — [data-scroll-progress]
+   Variações: bar (fixa no topo), line, circular, minimal.
+   A variável --progress (0..1) é escrita pelo JS.
+   ------------------------------------------------------------ */
+[data-scroll-progress] { --progress: 0; }
+
+[data-scroll-progress="bar"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: var(--z-header);
+  pointer-events: none;
+  background: var(--color-border);
+}
+[data-scroll-progress="bar"]::before {
+  content: "";
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+  transform: scaleX(var(--progress));
+  transform-origin: 0 50%;
+}
+
+[data-scroll-progress="line"] {
+  position: relative;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+[data-scroll-progress="line"]::before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-pill);
+  transform: scaleX(var(--progress));
+  transform-origin: 0 50%;
+}
+
+[data-scroll-progress="circular"] {
+  display: block;
+  width: 56px;
+  height: 56px;
+  transform: rotate(-90deg);
+}
+[data-scroll-progress="circular"] circle {
+  fill: none;
+  stroke: var(--color-border);
+  stroke-width: 4;
+}
+[data-scroll-progress="circular"] .sp__fill {
+  stroke: var(--color-accent);
+  stroke-dasharray: 100;
+  stroke-dashoffset: calc(100 - (var(--progress) * 100));
+  transition: stroke-dashoffset 60ms linear;
+}
+
+[data-scroll-progress="minimal"] {
+  position: fixed;
+  bottom: var(--space-5);
+  right: var(--space-5);
+  width: 3px;
+  height: 64px;
+  z-index: var(--z-fab);
+  pointer-events: none;
+  background: var(--color-border);
+  border-radius: var(--radius-pill);
+}
+[data-scroll-progress="minimal"]::before {
+  content: "";
+  display: block;
+  width: 100%;
+  background: var(--color-accent);
+  border-radius: var(--radius-pill);
+  transform: scaleY(var(--progress));
+  transform-origin: 0 0;
+}
+
+/* ------------------------------------------------------------
+   POINTER ENVIRONMENT — [data-pointer-env]
+   Só desktop (hover + fine), sutil, desativado em reduced-motion.
+   ------------------------------------------------------------ */
+[data-pointer-env="spotlight"] {
+  position: relative;
+  overflow: hidden;
+}
+[data-pointer-env="spotlight"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    380px circle at calc(var(--spot-x, .5) * 100%) calc(var(--spot-y, .5) * 100%),
+    color-mix(in srgb, var(--color-accent) 14%, transparent),
+    transparent 65%
+  );
+  transition: opacity var(--motion-slow) var(--ease-out);
+}
+html.tilt [data-pointer-env="spotlight"]::before { opacity: 1; }
+
+[data-pointer-env="proximity"] [data-proximity] {
+  transition: transform var(--motion-slow) var(--ease-out);
+  will-change: transform;
+}
+
+[data-cursor="follower"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-header);
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-accent);
+  opacity: 0;
+  transition: opacity var(--motion-slow) var(--ease-out);
+}
+html.tilt [data-cursor="follower"] { opacity: .9; }
+
+[data-pointer-env="distort"] [data-distort] {
+  transition: transform var(--motion-slow) var(--ease-out);
+  will-change: transform;
+}
+
+/* ------------------------------------------------------------
+   PARALLAX — profundidade sutil (data-parallax-depth="0.1".."0.5")
+   O JS (vanilla ou GSAP) move via transform; desativado em
+   reduced-motion.
+   ------------------------------------------------------------ */
+[data-parallax-depth] { will-change: transform; }
+
+/* ------------------------------------------------------------
+   HOVER DEVICE — tilt/magnetic aplicados via classes pelo JS
+   ------------------------------------------------------------ */
+html.tilt [data-tilt] { transform-style: preserve-3d; }
+
+/* ------------------------------------------------------------
+   PREFERS-REDUCED-MOTION — desativar quase tudo (regras.md)
+   Manter apenas feedback funcional mínimo (press).
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-parallax-depth] { transform: none !important; }
+
+  .marquee__track { animation: none; }
+
+  /* Split text: texto legível sem animação */
+  html.js [data-split] .split-inner {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  /* Storytelling: todas as cenas visíveis */
+  [data-story] .story__scene {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+
+  /* Pointer environment desligado */
+  html [data-pointer-env="spotlight"]::before,
+  html [data-cursor="follower"] { opacity: 0 !important; }
+  [data-pointer-env="proximity"] [data-proximity],
+  [data-pointer-env="distort"] [data-distort] { transform: none !important; }
+
+  /* Carousel: sem autoplay (o JS também não agenda) */
+  [data-gallery="carousel"] .carousel__track { transition: none; }
+}

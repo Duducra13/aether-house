@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-motion-preset="luxury">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — AETHER HOUSE</title>
+  <meta name="description" content="Explore the curated portfolio of AETHER HOUSE — residential, hospitality, cultural, and commercial architecture across Europe and Asia.">
+  <meta property="og:title" content="Projects — AETHER HOUSE">
+  <meta property="og:description" content="Curated architecture projects spanning residential, hospitality, cultural, and commercial spaces.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/logos/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
+  <link rel="stylesheet" href="assets/css/experience.css">
+  <link rel="stylesheet" href="assets/css/engine-modules.css">
+  <link rel="stylesheet" href="assets/css/aether.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="header ah-header" role="banner">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html" class="nav__brand" aria-label="AETHER HOUSE home">
+        <span class="ah-logo">AETHER<br>HOUSE</span>
+      </a>
+      <div class="nav__menu" id="nav-menu">
+        <a href="index.html" class="nav__link ah-nav-link">Home</a>
+        <a href="sobre.html" class="nav__link ah-nav-link">About</a>
+        <a href="projetos.html" class="nav__link ah-nav-link is-active">Projects</a>
+        <a href="servicos.html" class="nav__link ah-nav-link">Services</a>
+        <a href="contato.html" class="nav__cta ah-btn-nav">Start a Project</a>
+      </div>
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         01 — HERO
+         ============================================================ -->
+    <section class="ah-hero ah-hero--page">
+      <div class="ah-hero__content" data-stagger>
+        <p class="ah-kicker" data-reveal>Portfolio</p>
+        <h1 class="ah-section-title ah-section-title--hero" data-split="chars">Projects</h1>
+        <p class="ah-hero__subtitle" data-reveal>Spaces that speak. Structures that endure.</p>
+      </div>
+      <div class="ah-hero__frame" aria-hidden="true">
+        <span class="ah-frame-line ah-frame-line--top"></span>
+        <span class="ah-frame-line ah-frame-line--right"></span>
+        <span class="ah-frame-line ah-frame-line--bottom"></span>
+        <span class="ah-frame-line ah-frame-line--left"></span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         02 — FILTER BAR
+         ============================================================ -->
+    <section class="ah-filter" data-reveal>
+      <div class="ah-container">
+        <div class="ah-filter__bar" role="toolbar" aria-label="Filter projects by category">
+          <button class="ah-filter__btn is-active" type="button" aria-pressed="true">All</button>
+          <button class="ah-filter__btn" type="button" aria-pressed="false">Residential</button>
+          <button class="ah-filter__btn" type="button" aria-pressed="false">Hospitality</button>
+          <button class="ah-filter__btn" type="button" aria-pressed="false">Cultural</button>
+          <button class="ah-filter__btn" type="button" aria-pressed="false">Commercial</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         03 — PROJECT GRID
+         ============================================================ -->
+    <section class="ah-projects">
+      <div class="ah-container">
+        <div class="ah-projects__grid" data-stagger data-gallery="lightbox" data-group="all-projects">
+
+          <!-- 01 — Casa Nórdica -->
+          <article class="ah-project" data-reveal data-tilt data-category="residential">
+            <a href="#" class="ah-project__link">
+              <div class="ah-project__media" data-gallery="lightbox" data-group="all-projects" data-lightbox="assets/img/projetos/casa-nordica.jpg" data-caption="Casa Nórdica — Stockholm, 2024">
+                <div class="ah-project__img ah-img-placeholder" style="--aspect:3/4;background:linear-gradient(180deg,#2a2722 0%,#0c0b09 100%)" role="img" aria-label="Casa Nórdica — Stockholm, 2024">
+                  <span class="ah-project__year">2024</span>
+                </div>
+              </div>
+              <div class="ah-project__info">
+                <h3 class="ah-project__title">Casa Nórdica</h3>
+                <p class="ah-project__meta">Stockholm, 2024 — Residential</p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 02 — Hotel Auréa -->
+          <article class="ah-project" data-reveal data-tilt data-category="hospitality">
+            <a href="#" class="ah-project__link">
+              <div class="ah-project__media" data-gallery="lightbox" data-group="all-projects" data-lightbox="assets/img/projetos/hotel-aurea.jpg" data-caption="Hotel Auréa — Lisbon, 2023">
+                <div class="ah-project__img ah-img-placeholder" style="--aspect:4/3;background:linear-gradient(135deg,#1e1c18 0%,#2a2722 100%)" role="img" aria-label="Hotel Auréa — Lisbon, 2023">
+                  <span class="ah-project__year">2023</span>
+                </div>
+              </div>
+              <div class="ah-project__info">
+                <h3 class="ah-project__title">Hotel Auréa</h3>
+                <p class="ah-project__meta">Lisbon, 2023 — Hospitality</p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 03 — Galeria 27 -->
+          <article class="ah-project" data-reveal data-tilt data-category="cultural">
+            <a href="#" class="ah-project__link">
+              <div class="ah-project__media" data-gallery="lightbox" data-group="all-projects" data-lightbox="assets/img/projetos/galeria-27.jpg" data-caption="Galeria 27 — Berlin, 2024">
+                <div class="ah-project__img ah-img-placeholder" style="--aspect:1/1;background:linear-gradient(225deg,#161412 0%,#c9a96e15 100%)" role="img" aria-label="Galeria 27 — Berlin, 2024">
+                  <span class="ah-project__year">2024</span>
+                </div>
+              </div>
+              <div class="ah-project__info">
+                <h3 class="ah-project__title">Galeria 27</h3>
+                <p class="ah-project__meta">Berlin, 2024 — Cultural</p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 04 — Residência Monolith -->
+          <article class="ah-project" data-reveal data-tilt data-category="residential">
+            <a href="#" class="ah-project__link">
+              <div class="ah-project__media" data-gallery="lightbox" data-group="all-projects" data-lightbox="assets/img/projetos/residencia-monolith.jpg" data-caption="Residência Monolith — Zurich, 2023">
+                <div class="ah-project__img ah-img-placeholder" style="--aspect:3/2;background:linear-gradient(180deg,#2a2722 0%,#161412 100%)" role="img" aria-label="Residência Monolith — Zurich, 2023">
+                  <span class="ah-project__year">2023</span>
+                </div>
+              </div>
+              <div class="ah-project__info">
+                <h3 class="ah-project__title">Residência Monolith</h3>
+                <p class="ah-project__meta">Zurich, 2023 — Residential</p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 05 — Pavilion Void -->
+          <article class="ah-project" data-reveal data-tilt data-category="cultural">
+            <a href="#" class="ah-project__link">
+              <div class="ah-project__media" data-gallery="lightbox" data-group="all-projects" data-lightbox="assets/img/projetos/pavilion-void.jpg" data-caption="Pavilion Void — Tokyo, 2024">
+                <div class="ah-project__img ah-img-placeholder" style="--aspect:16/10;background:linear-gradient(135deg,#161412 0%,#2a2722 50%,#c9a96e22 100%)" role="img" aria-label="Pavilion Void — Tokyo, 2024">
+                  <span class="ah-project__year">2024</span>
+                </div>
+              </div>
+              <div class="ah-project__info">
+                <h3 class="ah-project__title">Pavilion Void</h3>
+                <p class="ah-project__meta">Tokyo, 2024 — Cultural</p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 06 — Studio Meridian -->
+          <article class="ah-project" data-reveal data-tilt data-category="commercial">
+            <a href="#" class="ah-project__link">
+              <div class="ah-project__media" data-gallery="lightbox" data-group="all-projects" data-lightbox="assets/img/projetos/studio-meridian.jpg" data-caption="Studio Meridian — London, 2023">
+                <div class="ah-project__img ah-img-placeholder" style="--aspect:4/5;background:linear-gradient(180deg,#2a2722 0%,#0c0b09 100%)" role="img" aria-label="Studio Meridian — London, 2023">
+                  <span class="ah-project__year">2023</span>
+                </div>
+              </div>
+              <div class="ah-project__info">
+                <h3 class="ah-project__title">Studio Meridian</h3>
+                <p class="ah-project__meta">London, 2023 — Commercial</p>
+              </div>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         04 — BEFORE / AFTER
+         ============================================================ -->
+    <section class="ah-beforeafter">
+      <div class="ah-container">
+        <div class="ah-beforeafter__header" data-stagger>
+          <p class="ah-kicker" data-reveal>Transformation</p>
+          <h2 class="ah-section-title" data-split>Before &amp; After</h2>
+          <p class="ah-section-subtitle" data-reveal>Residência Monolith — from industrial relic to residential sanctuary. Drag the handle to reveal the transformation.</p>
+        </div>
+        <div class="ah-beforeafter__stage" data-reveal>
+          <div data-gallery="beforeafter" role="slider" tabindex="0" aria-label="Before and after renovation" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <div class="ba__after"><div class="ah-img-placeholder" style="aspect-ratio:16/9;background:linear-gradient(135deg,#2a2722,#161412)"></div></div>
+            <div class="ba__before"><div class="ah-img-placeholder" style="aspect-ratio:16/9;background:linear-gradient(135deg,#3a3730,#2a2722)"></div></div>
+            <div class="ba__handle"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         05 — CTA
+         ============================================================ -->
+    <section class="ah-cta">
+      <div class="ah-container">
+        <div class="ah-cta__inner" data-stagger>
+          <h2 class="ah-cta__title" data-split>Let's shape<br>the next space.</h2>
+          <div class="ah-cta__actions" data-reveal>
+            <a href="contato.html" class="btn btn--primary btn--lg ah-btn-cta" data-magnetic data-tilt>
+              <span>Start a Project</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer ah-footer" role="contentinfo">
+    <div class="ah-container">
+      <div class="ah-footer__top">
+        <div class="ah-footer__brand">
+          <span class="ah-logo ah-logo--footer">AETHER<br>HOUSE</span>
+          <p class="ah-footer__tagline">Architecture for the senses.</p>
+        </div>
+        <div class="ah-footer__links">
+          <div class="ah-footer__col">
+            <h4 class="ah-footer__heading">Navigation</h4>
+            <a href="index.html" class="ah-footer__link">Home</a>
+            <a href="sobre.html" class="ah-footer__link">About</a>
+            <a href="projetos.html" class="ah-footer__link">Projects</a>
+            <a href="servicos.html" class="ah-footer__link">Services</a>
+            <a href="contato.html" class="ah-footer__link">Contact</a>
+          </div>
+          <div class="ah-footer__col">
+            <h4 class="ah-footer__heading">Contact</h4>
+            <a href="mailto:hello@aetherhouse.studio" class="ah-footer__link">hello@aetherhouse.studio</a>
+            <span class="ah-footer__link">+351 912 345 678</span>
+          </div>
+          <div class="ah-footer__col">
+            <h4 class="ah-footer__heading">Location</h4>
+            <span class="ah-footer__link">Rua da Architetura 42</span>
+            <span class="ah-footer__link">1200-001 Lisbon, Portugal</span>
+          </div>
+          <div class="ah-footer__col">
+            <h4 class="ah-footer__heading">Follow</h4>
+            <a href="#" class="ah-footer__link">Instagram</a>
+            <a href="#" class="ah-footer__link">LinkedIn</a>
+            <a href="#" class="ah-footer__link">Behance</a>
+          </div>
+        </div>
+      </div>
+      <div class="ah-footer__bottom">
+        <span>&copy; <span data-year></span> AETHER HOUSE. All rights reserved.</span>
+        <span class="ah-footer__credit">Designed with CCS Engine</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Progress -->
+  <div class="ah-scroll-progress" data-scroll-progress="bar"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/engine/ccs.core.js" defer></script>
+  <script src="assets/js/engine/ccs.experience.js" defer></script>
+  <script src="assets/js/engine/ccs.motion-enhance.js" defer></script>
+  <script src="assets/js/engine/ccs.motion.js" defer></script>
+  <script src="assets/js/engine/ccs.gallery.js" defer></script>
+  <script src="assets/js/engine/ccs.forms.js" defer></script>
+  <script src="assets/js/engine/ccs.transitions.js" defer></script>
+  <script src="assets/js/engine/ccs.loader.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+  <script src="assets/js/interactions.js" defer></script>
+</body>
+</html>

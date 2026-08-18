@@ -1,0 +1,251 @@
+/* ============================================================
+   SEÇÕES — blocos de página (ver biblioteca/layouts/secoes.md)
+   Heros variam conforme a direção de arte (biblioteca/layouts/heros.md).
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   HERO — variante padrão (texto + mídia)
+   ------------------------------------------------------------ */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: var(--space-8);
+  align-items: center;
+  padding-block: clamp(3rem, 8vw, 6rem) var(--section-space);
+}
+
+@media (max-width: 56rem) {
+  .hero { grid-template-columns: 1fr; gap: var(--space-6); }
+}
+
+.hero__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.hero__title {
+  font-size: var(--text-display);
+  margin-bottom: var(--space-5);
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+.hero__lead {
+  font-size: var(--text-h4);
+  color: var(--color-text-muted);
+  max-width: 34rem;
+  margin-bottom: var(--space-6);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.hero__note {
+  margin-top: var(--space-5);
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+}
+
+.hero__media {
+  position: relative;
+  border-radius: var(--radius-rounded);
+  overflow: hidden;
+  box-shadow: var(--shadow-dramatic);
+}
+
+.hero__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Hero central (variante pôster) */
+.hero--center {
+  grid-template-columns: 1fr;
+  text-align: center;
+  padding-block: clamp(4rem, 10vw, 8rem);
+}
+
+.hero--center .hero__lead { margin-inline: auto; }
+.hero--center .hero__actions { justify-content: center; }
+
+/* ------------------------------------------------------------
+   MARQUEE — faixa em movimento contínuo
+   (CSS puro; desativado em prefers-reduced-motion)
+   ------------------------------------------------------------ */
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--color-border);
+  padding-block: var(--space-5);
+  background: var(--color-surface);
+}
+
+.marquee__track {
+  display: flex;
+  gap: var(--space-8);
+  width: max-content;
+  animation: marquee var(--motion-cinematic) linear infinite;
+}
+
+.marquee__track.is-paused { animation-play-state: paused; }
+
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ------------------------------------------------------------
+   FEATURES / SERVIÇOS — grade de cards
+   ------------------------------------------------------------ */
+.features .card__text { margin-bottom: 0; }
+
+/* ------------------------------------------------------------
+   STEPS — "como funciona" em passos numerados
+   ------------------------------------------------------------ */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--grid-gap);
+}
+
+@media (max-width: 48rem) { .steps { grid-template-columns: 1fr; } }
+
+.step {
+  position: relative;
+  padding-top: var(--space-6);
+  border-top: 2px solid var(--color-border);
+}
+
+.step__num {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.step__title { font-size: var(--text-h3); margin-bottom: var(--space-3); }
+.step__text { color: var(--color-text-muted); }
+
+/* ------------------------------------------------------------
+   MEDIA SPLIT — texto + imagem (sobre / diferenciais)
+   ------------------------------------------------------------ */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (max-width: 48rem) { .split { grid-template-columns: 1fr; } }
+
+.split__media {
+  border-radius: var(--radius-rounded);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.split__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+.split__list { margin-top: var(--space-5); display: grid; gap: var(--space-3); }
+.split__list li { display: flex; gap: var(--space-3); align-items: flex-start; }
+.split__list .check { color: var(--color-primary); flex: none; margin-top: 2px; }
+
+/* ------------------------------------------------------------
+   CTA BLOCK — chamada final destacada
+   ------------------------------------------------------------ */
+.cta-block {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-primary);
+  color: var(--color-on-dark);
+  border-radius: var(--radius-rounded);
+  padding: clamp(3rem, 8vw, 5.5rem);
+  text-align: center;
+  box-shadow: var(--shadow-dramatic);
+}
+
+.cta-block__title { font-size: var(--text-h1); margin-bottom: var(--space-4); }
+
+.cta-block__text {
+  max-width: 40rem;
+  margin: 0 auto var(--space-6);
+  color: color-mix(in srgb, var(--color-on-dark) 82%, transparent);
+}
+
+.cta-block__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------
+   CONTACT — blocos de contato + mapa
+   ------------------------------------------------------------ */
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+@media (max-width: 48rem) { .contact__grid { grid-template-columns: 1fr; } }
+
+.contact__item {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.contact__item:last-child { border-bottom: 0; }
+
+.contact__icon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-rounded);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.contact__icon svg { width: 22px; height: 22px; }
+
+.contact__label { font-size: var(--text-small); font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-caps); color: var(--color-text-muted); }
+.contact__value { font-weight: 600; }
+.contact__value a { text-decoration: none; }
+@media (hover: hover) { .contact__value a:hover { text-decoration: underline; } }
+
+.map {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+}

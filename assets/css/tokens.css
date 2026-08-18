@@ -1,0 +1,145 @@
+/* ================================================================
+   AETHER HOUSE — Design Tokens
+   Identity: Architectural Atmosphere
+   Direction: Dark minimal, editorial, mineral tones
+   ================================================================ */
+
+:root {
+
+  /* ── COLOR — Architectural Palette ─────────────────────────── */
+  --color-primary:       #c9a96e;
+  --color-primary-hover: #d4b87d;
+  --color-primary-soft:  rgba(201,169,110,.12);
+  --color-secondary:     #8a8578;
+  --color-accent:        #e8dcc8;
+
+  --color-background:    #0c0b09;
+  --color-surface:       #161412;
+  --color-surface-2:     #1e1c18;
+  --color-surface-3:     #2a2722;
+
+  --color-text:          #f0ece4;
+  --color-text-muted:    #9a9488;
+  --color-text-dim:      #5c5850;
+
+  --color-border:        #2a2722;
+  --color-border-light:  #3a3730;
+
+  --color-success:       #6a9e6a;
+  --color-warning:       #c9a96e;
+  --color-error:         #c07060;
+  --color-focus:         #c9a96e;
+
+  --color-on-dark:       #f0ece4;
+  --color-on-dark-muted: #9a9488;
+
+  /* ── TYPOGRAPHY — Display + Body ───────────────────────────── */
+  --font-display:        "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-body:           "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono:           "JetBrains Mono", "Fira Code", monospace;
+
+  /* ── TYPOGRAPHY — Scale ────────────────────────────────────── */
+  --text-display:        clamp(3rem, 9vw, 7rem);
+  --text-h1:             clamp(2.25rem, 5.5vw, 3.75rem);
+  --text-h2:             clamp(1.75rem, 4vw, 2.75rem);
+  --text-h3:             clamp(1.25rem, 2.5vw, 1.5rem);
+  --text-h4:             1.125rem;
+  --text-body:           1rem;
+  --text-small:          0.875rem;
+  --text-caption:        0.75rem;
+  --text-kicker:         0.6875rem;
+
+  /* ── TYPOGRAPHY — Leading ──────────────────────────────────── */
+  --leading-tight:       1.05;
+  --leading-snug:        1.2;
+  --leading-normal:      1.6;
+  --leading-relaxed:     1.8;
+
+  /* ── TYPOGRAPHY — Tracking ─────────────────────────────────── */
+  --tracking-tight:      -0.03em;
+  --tracking-normal:     0;
+  --tracking-wide:       0.06em;
+  --tracking-caps:       0.16em;
+
+  /* ── SPACING (base 8px) ────────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   96px;
+  --space-10:  128px;
+  --space-11:  160px;
+  --space-12:  200px;
+
+  /* ── LAYOUT ────────────────────────────────────────────────── */
+  --container:     80rem;
+  --gutter:        clamp(1.25rem, 3vw, 3rem);
+  --grid-gap:      clamp(1.5rem, 3vw, 2.5rem);
+  --nav-height:    5rem;
+  --section-space: clamp(5rem, 12vw, 9rem);
+
+  /* ── RADIUS ────────────────────────────────────────────────── */
+  --radius-sharp:   0;
+  --radius-subtle:  2px;
+  --radius-rounded: 8px;
+  --radius-pill:    999px;
+
+  /* ── SHADOW ────────────────────────────────────────────────── */
+  --shadow-none:     none;
+  --shadow-soft:     0 2px 8px rgba(0,0,0,.3);
+  --shadow-medium:   0 8px 32px rgba(0,0,0,.4);
+  --shadow-dramatic: 0 24px 64px rgba(0,0,0,.5);
+  --shadow-glow:     0 0 32px rgba(201,169,110,.2);
+
+  /* ── MOTION — Duration ─────────────────────────────────────── */
+  --motion-fast:      120ms;
+  --motion-normal:    280ms;
+  --motion-slow:      500ms;
+  --motion-cinematic: 900ms;
+
+  /* ── MOTION — Easing ───────────────────────────────────────── */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ── MOTION — Reveal ───────────────────────────────────────── */
+  --motion-reveal-y:      24px;
+  --motion-stagger:       50ms;
+  --motion-duration:      0.7s;
+  --motion-ease:          cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-entrance-scale: 0.96;
+  --motion-entrance-blur:  4px;
+  --motion-parallax-speed: 1;
+  --motion-hover-strength: 0.6;
+  --motion-intensity:      0.7;
+
+  /* ── MOTION — Scroll (GSAP) ────────────────────────────────── */
+  --motion-scrub-range: "top 85%";
+  --motion-scrub-speed: 1;
+
+  /* ── 2.5D — Depth ──────────────────────────────────────────── */
+  --depth-layer-0: 0.15;
+  --depth-layer-1: 0.35;
+  --depth-layer-2: 0.6;
+
+  /* ── 3D — Shell ────────────────────────────────────────────── */
+  --shell-min-height: min(75vh, 640px);
+  --shell-aspect:     16 / 9;
+  --shell-radius:     var(--radius-subtle);
+  --shell-fallback-bg: var(--color-surface);
+
+  /* ── Z-INDEX ───────────────────────────────────────────────── */
+  --z-header:      1000;
+  --z-mobile-menu: 1100;
+  --z-fab:         1200;
+  --z-mobilebar:   1300;
+  --z-lightbox:    1400;
+  --z-shell-ui:    10;
+  --z-shell-fallback: 20;
+}
+
+/* ── Google Fonts ────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
