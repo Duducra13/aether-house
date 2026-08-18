@@ -7,6 +7,7 @@
   "use strict";
 
   var CCS = window.CCS;
+  console.log("[AH-3D] IIFE running, CCS=" + typeof CCS + ", hasWebGL=" + (CCS ? CCS.hasWebGL() : "N/A"));
   if (!CCS || !CCS.hasWebGL()) return;
 
   var isReduced = CCS.features.reduced;
@@ -380,10 +381,17 @@
 
   /* Boot when DOM ready */
   function boot() {
-    document.querySelectorAll('[data-engine="3d"][data-architectural]').forEach(function (host) {
+    console.log("[AH-3D] boot() called, CCS=" + typeof CCS);
+    var hosts = document.querySelectorAll('[data-engine="3d"][data-architectural]');
+    console.log("[AH-3D] found " + hosts.length + " architectural shells");
+    hosts.forEach(function (host) {
+      console.log("[AH-3D] loading Three.js...");
       loadThreeJS().then(function (THREE) {
+        console.log("[AH-3D] Three.js loaded, version=" + THREE.REVISION);
         createScene(host, THREE);
-      }).catch(function () {
+        console.log("[AH-3D] createScene completed");
+      }).catch(function (e) {
+        console.warn("[AH-3D] FAILED: " + (e && e.message));
         var fb = host.querySelector("[data-fallback]");
         if (fb) fb.removeAttribute("hidden");
         host.classList.add("is-fallback");
