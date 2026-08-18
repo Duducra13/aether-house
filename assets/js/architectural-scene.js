@@ -13,11 +13,11 @@
   var isReduced = CCS.features.reduced;
 
   function createScene(host, THREE) {
-    var canvas = host.querySelector("canvas");
-    if (!canvas) {
-      canvas = document.createElement("canvas");
-      host.appendChild(canvas);
-    }
+    /* Always create a fresh canvas to avoid conflicts with CCS.experience */
+    var old = host.querySelector("canvas");
+    if (old) old.remove();
+    var canvas = document.createElement("canvas");
+    host.appendChild(canvas);
 
     var renderer, scene, camera, clock;
     var building, scrollProgress = 0;
