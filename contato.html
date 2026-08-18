@@ -46,15 +46,20 @@
     <!-- ============================================================
          01 — CONTACT HERO
          ============================================================ -->
-    <section class="ah-page-hero">
-      <div class="ah-container">
-        <div class="ah-page-hero__content" data-stagger>
-          <p class="ah-kicker" data-reveal>Get in Touch</p>
-          <h1 class="ah-page-hero__title" data-split="chars">Contact</h1>
-          <p class="ah-page-hero__subtitle" data-reveal>Let's start a conversation about your next project.</p>
-        </div>
+    <section class="ah-hero">
+      <div class="ah-hero__bg" data-parallax-depth="0.08" style="background-image:url('assets/img/contato/detail.jpg');background-size:cover;background-position:center">
+        <div class="ah-hero__gradient"></div>
       </div>
-      <div class="ah-page-hero__frame" aria-hidden="true">
+      <div class="ah-hero__content" data-stagger>
+        <p class="ah-kicker" data-reveal>Get in Touch</p>
+        <h1 class="ah-hero__title" data-split="chars">Contact</h1>
+        <p class="ah-hero__subtitle" data-reveal>Let's start a conversation about your next project.</p>
+      </div>
+      <div class="ah-hero__scroll" data-reveal>
+        <span class="ah-scroll-label">Scroll</span>
+        <span class="ah-scroll-line"></span>
+      </div>
+      <div class="ah-hero__frame" aria-hidden="true">
         <span class="ah-frame-line ah-frame-line--top"></span>
         <span class="ah-frame-line ah-frame-line--right"></span>
         <span class="ah-frame-line ah-frame-line--bottom"></span>
@@ -88,8 +93,8 @@
                 <span class="form-field__error ah-field__error"></span>
               </div>
               <div class="form-field ah-field">
-                <label for="company" class="ah-field__label">Company</label>
-                <input type="text" id="company" name="company" class="ah-field__input" autocomplete="organization">
+                <label for="phone" class="ah-field__label">Phone</label>
+                <input type="tel" id="phone" name="phone" class="ah-field__input" autocomplete="tel">
                 <span class="form-field__error ah-field__error"></span>
               </div>
               <div class="form-field ah-field">
@@ -99,7 +104,7 @@
                   <option value="residential">Residential</option>
                   <option value="commercial">Commercial</option>
                   <option value="hospitality">Hospitality</option>
-                  <option value="cultural">Cultural</option>
+                  <option value="retail">Retail</option>
                   <option value="experience">Experience</option>
                 </select>
                 <span class="form-field__error ah-field__error"></span>
@@ -136,7 +141,7 @@
 
               <div class="ah-contact__item" data-reveal>
                 <span class="ah-contact__item-label">Address</span>
-                <span class="ah-contact__item-value">Rua da Architetura 42<br>1200-001 Lisbon, Portugal</span>
+                <span class="ah-contact__item-value">Rua da Arquitetura 42<br>1200-001 Lisbon, Portugal</span>
               </div>
 
               <div class="ah-contact__item" data-reveal>
@@ -160,22 +165,7 @@
     </section>
 
     <!-- ============================================================
-         03 — MAP / LOCATION
-         ============================================================ -->
-    <section class="ah-location" data-reveal>
-      <div class="ah-container">
-        <div class="ah-location__inner" data-stagger>
-          <p class="ah-kicker" data-reveal>Location</p>
-          <h2 class="ah-section-title" data-split>Find<br>Us</h2>
-          <div class="ah-location__map ah-img-placeholder" style="--aspect:16/9;background:linear-gradient(135deg,#1e1c18 0%,#2a2722 50%,#161412 100%)" role="img" aria-label="Map showing AETHER HOUSE studio location in Lisbon, Portugal">
-            <span class="ah-location__map-label">Lisbon, Portugal</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         04 — CTA
+         03 — CTA
          ============================================================ -->
     <section class="ah-cta">
       <div class="ah-container">
@@ -219,7 +209,7 @@
           </div>
           <div class="ah-footer__col">
             <h4 class="ah-footer__heading">Location</h4>
-            <span class="ah-footer__link">Rua da Architetura 42</span>
+            <span class="ah-footer__link">Rua da Arquitetura 42</span>
             <span class="ah-footer__link">1200-001 Lisbon, Portugal</span>
           </div>
           <div class="ah-footer__col">
@@ -231,7 +221,7 @@
         </div>
       </div>
       <div class="ah-footer__bottom">
-        <span>© <span data-year></span> AETHER HOUSE. All rights reserved.</span>
+        <span>&copy; <span data-year></span> AETHER HOUSE. All rights reserved.</span>
         <span class="ah-footer__credit">Designed with CCS Engine</span>
       </div>
     </div>

@@ -24,7 +24,7 @@ body {
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
   color: var(--color-primary);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 .ah-section-title {
@@ -49,7 +49,7 @@ body {
   color: var(--color-text-muted);
   max-width: 38ch;
   line-height: var(--leading-normal);
-  margin-top: var(--space-5);
+  margin-top: var(--space-4);
 }
 
 .ah-body-text {
@@ -172,7 +172,7 @@ body {
 /* ── HERO ────────────────────────────────────────────────────── */
 .ah-hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -198,7 +198,7 @@ body {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: var(--space-10) var(--gutter) var(--space-8);
+  padding: var(--space-8) var(--gutter) var(--space-6);
 }
 
 .ah-hero__kicker {
@@ -208,7 +208,7 @@ body {
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
   color: var(--color-primary);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .ah-hero__title {
@@ -218,7 +218,7 @@ body {
   line-height: 0.92;
   letter-spacing: var(--tracking-tight);
   color: var(--color-text);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .ah-hero__subtitle {
@@ -227,7 +227,7 @@ body {
   font-weight: 300;
   font-style: italic;
   color: var(--color-text-muted);
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-5);
 }
 
 .ah-hero__cta {
@@ -239,13 +239,13 @@ body {
 
 .ah-hero__scroll {
   position: absolute;
-  bottom: var(--space-7);
+  bottom: var(--space-5);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
   z-index: 2;
 }
 
@@ -271,7 +271,7 @@ body {
 
 .ah-hero__frame {
   position: absolute;
-  inset: var(--space-7);
+  inset: var(--space-5);
   pointer-events: none;
   z-index: 1;
 }
@@ -288,10 +288,10 @@ body {
 
 /* ── MANIFESTO ───────────────────────────────────────────────── */
 .ah-manifesto {
-  padding: var(--section-space) 0;
+  padding: var(--space-9) 0;
   display: flex;
   align-items: center;
-  min-height: 80vh;
+  min-height: auto;
 }
 
 .ah-manifesto__text {
@@ -312,7 +312,7 @@ body {
   font-size: var(--text-body);
   color: var(--color-text-muted);
   max-width: 42ch;
-  margin-top: var(--space-6);
+  margin-top: var(--space-5);
   line-height: var(--leading-normal);
 }
 
@@ -322,14 +322,14 @@ body {
 }
 
 .ah-editorial__header {
-  margin-bottom: var(--space-9);
+  margin-bottom: var(--space-7);
 }
 
 .ah-editorial__grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--grid-gap);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
 }
 
 .ah-card {
@@ -404,7 +404,7 @@ body {
 /* ── 2.5D DEPTH SECTION ──────────────────────────────────────── */
 .ah-depth {
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -414,7 +414,7 @@ body {
 .ah-depth__scene {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 .ah-depth__layer {
@@ -515,7 +515,7 @@ body {
 }
 
 .ah-story__scene {
-  min-height: 100vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -523,10 +523,19 @@ body {
   z-index: 2;
 }
 
+.ah-story__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 11, 9, .7);
+  z-index: 1;
+}
+
 .ah-story__inner {
   text-align: center;
   padding: var(--gutter);
   max-width: 600px;
+  position: relative;
+  z-index: 2;
 }
 
 .ah-story__num {
@@ -535,16 +544,16 @@ body {
   font-size: var(--text-caption);
   color: var(--color-primary);
   letter-spacing: var(--tracking-caps);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-3);
 }
 
 .ah-story__title {
   font-family: var(--font-display);
   font-size: var(--text-h2);
   font-weight: 300;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   color: var(--color-text);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-3);
 }
 
 .ah-story__text {
@@ -556,12 +565,12 @@ body {
 
 /* ── 3D SECTION ──────────────────────────────────────────────── */
 .ah-3d-section {
-  padding: var(--section-space) 0 0;
+  padding: var(--space-9) 0 0;
 }
 
 .ah-3d-header {
   text-align: center;
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-5);
   padding: 0 var(--gutter);
 }
 
@@ -674,22 +683,22 @@ body {
 
 /* 3D Scroll Section */
 .ah-3d-scroll-section {
-  padding: var(--section-space) 0;
+  padding: var(--space-9) 0;
 }
 
 .ah-3d-scroll__text {
   padding: 0 var(--gutter);
   max-width: 500px;
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-5);
 }
 
 /* ── PROJECTS ────────────────────────────────────────────────── */
 .ah-projects {
-  padding: var(--section-space) 0;
+  padding: var(--space-9) 0;
 }
 
 .ah-projects__header {
-  margin-bottom: var(--space-9);
+  margin-bottom: var(--space-7);
 }
 
 .ah-projects__grid {
@@ -733,7 +742,7 @@ body {
 }
 
 .ah-project__info {
-  padding: var(--space-4) 0;
+  padding: var(--space-3) 0;
 }
 
 .ah-project__title {
@@ -753,12 +762,12 @@ body {
 
 /* ── SERVICES ────────────────────────────────────────────────── */
 .ah-services {
-  padding: var(--section-space) 0;
+  padding: var(--space-9) 0;
   background: var(--color-surface);
 }
 
 .ah-services__header {
-  margin-bottom: var(--space-9);
+  margin-bottom: var(--space-7);
 }
 
 .ah-services__list {
@@ -769,9 +778,9 @@ body {
 .ah-service {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: var(--space-6);
+  gap: var(--space-5);
   align-items: center;
-  padding: var(--space-6) 0;
+  padding: var(--space-5) 0;
   border-top: 1px solid var(--color-border);
   cursor: pointer;
   transition: all var(--motion-normal) var(--ease-out);
@@ -825,11 +834,11 @@ body {
 
 /* ── PROCESS ─────────────────────────────────────────────────── */
 .ah-process {
-  padding: var(--section-space) 0;
+  padding: var(--space-9) 0;
 }
 
 .ah-process__header {
-  margin-bottom: var(--space-9);
+  margin-bottom: var(--space-7);
 }
 
 .ah-process__steps {
@@ -840,7 +849,7 @@ body {
 
 .ah-step {
   position: relative;
-  padding-top: var(--space-6);
+  padding-top: var(--space-5);
   border-top: 1px solid var(--color-border);
 }
 
@@ -850,7 +859,7 @@ body {
   font-size: var(--text-caption);
   color: var(--color-primary);
   letter-spacing: var(--tracking-wide);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 .ah-step__title {
@@ -858,7 +867,7 @@ body {
   font-size: var(--text-h3);
   font-weight: 400;
   color: var(--color-text);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .ah-step__text {
@@ -869,7 +878,7 @@ body {
 
 /* ── NUMBERS ─────────────────────────────────────────────────── */
 .ah-numbers {
-  padding: var(--section-space) 0;
+  padding: var(--space-8) 0;
   background: var(--color-surface);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
@@ -901,8 +910,8 @@ body {
 
 /* ── CTA ─────────────────────────────────────────────────────── */
 .ah-cta {
-  padding: var(--section-space) 0;
-  min-height: 70vh;
+  padding: var(--space-9) 0;
+  min-height: 45vh;
   display: flex;
   align-items: center;
 }
@@ -917,7 +926,7 @@ body {
   font-weight: 300;
   line-height: var(--leading-tight);
   color: var(--color-text);
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-5);
 }
 
 .ah-btn-cta {
@@ -930,14 +939,14 @@ body {
 .ah-footer {
   background: var(--color-surface);
   border-top: 1px solid var(--color-border);
-  padding: var(--space-9) 0 var(--space-6);
+  padding: var(--space-8) 0 var(--space-5);
 }
 
 .ah-footer__top {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: var(--space-9);
-  margin-bottom: var(--space-8);
+  gap: var(--space-8);
+  margin-bottom: var(--space-6);
 }
 
 .ah-footer__tagline {
@@ -960,7 +969,7 @@ body {
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
   color: var(--color-text-dim);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 .ah-footer__link {

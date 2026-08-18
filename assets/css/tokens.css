@@ -50,16 +50,16 @@
   --text-kicker:         0.6875rem;
 
   /* ── TYPOGRAPHY — Leading ──────────────────────────────────── */
-  --leading-tight:       1.05;
-  --leading-snug:        1.2;
-  --leading-normal:      1.6;
-  --leading-relaxed:     1.8;
+  --leading-tight:       1.02;
+  --leading-snug:        1.15;
+  --leading-normal:      1.5;
+  --leading-relaxed:     1.65;
 
   /* ── TYPOGRAPHY — Tracking ─────────────────────────────────── */
   --tracking-tight:      -0.03em;
   --tracking-normal:     0;
-  --tracking-wide:       0.06em;
-  --tracking-caps:       0.16em;
+  --tracking-wide:       0.04em;
+  --tracking-caps:       0.1em;
 
   /* ── SPACING (base 8px) ────────────────────────────────────── */
   --space-1:   4px;
@@ -70,17 +70,17 @@
   --space-6:   32px;
   --space-7:   48px;
   --space-8:   64px;
-  --space-9:   96px;
-  --space-10:  128px;
-  --space-11:  160px;
-  --space-12:  200px;
+  --space-9:   64px;
+  --space-10:  80px;
+  --space-11:  96px;
+  --space-12:  120px;
 
   /* ── LAYOUT ────────────────────────────────────────────────── */
   --container:     80rem;
   --gutter:        clamp(1.25rem, 3vw, 3rem);
   --grid-gap:      clamp(1.5rem, 3vw, 2.5rem);
-  --nav-height:    5rem;
-  --section-space: clamp(5rem, 12vw, 9rem);
+  --nav-height:    3.5rem;
+  --section-space: clamp(3rem, 7vw, 5rem);
 
   /* ── RADIUS ────────────────────────────────────────────────── */
   --radius-sharp:   0;
@@ -126,7 +126,7 @@
   --depth-layer-2: 0.6;
 
   /* ── 3D — Shell ────────────────────────────────────────────── */
-  --shell-min-height: min(75vh, 640px);
+  --shell-min-height: min(55vh, 420px);
   --shell-aspect:     16 / 9;
   --shell-radius:     var(--radius-subtle);
   --shell-fallback-bg: var(--color-surface);
