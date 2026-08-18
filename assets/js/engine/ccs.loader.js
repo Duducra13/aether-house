@@ -126,7 +126,7 @@
      ---------------------------------------------------------- */
   function init() {
     var hosts = Array.prototype.slice.call(
-      document.querySelectorAll("[data-engine='3d']")
+      document.querySelectorAll("[data-engine='3d']:not([data-architectural])")
     );
     if (!hosts.length) { bootMotion(); return; }
 
