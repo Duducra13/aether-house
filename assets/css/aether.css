@@ -408,7 +408,7 @@ body {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: var(--color-surface);
+  background: #0c0b09;
 }
 
 .ah-depth__scene {
@@ -420,6 +420,20 @@ body {
 .ah-depth__layer {
   position: absolute;
   inset: 0;
+  pointer-events: none;
+}
+
+.ah-depth__scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 11, 9, .65) 0%,
+    rgba(12, 11, 9, .45) 40%,
+    rgba(12, 11, 9, .65) 100%
+  );
+  z-index: 3;
   pointer-events: none;
 }
 
@@ -482,6 +496,7 @@ body {
   padding: var(--section-space) var(--gutter);
   width: min(var(--container), 100% - var(--gutter) * 2);
   margin-inline: auto;
+  text-shadow: 0 2px 24px rgba(0,0,0,.6), 0 1px 4px rgba(0,0,0,.4);
 }
 
 .ah-depth__proximity-element--1 {
@@ -566,12 +581,21 @@ body {
 /* ── 3D SECTION ──────────────────────────────────────────────── */
 .ah-3d-section {
   padding: var(--space-9) 0 0;
+  background: #ffffff;
 }
 
 .ah-3d-header {
   text-align: center;
   margin-bottom: var(--space-5);
   padding: 0 var(--gutter);
+}
+
+.ah-3d-header .ah-section-title {
+  color: #1a1816;
+}
+
+.ah-3d-header .ah-kicker {
+  color: #8b7355;
 }
 
 .ah-3d-fallback {
@@ -676,9 +700,17 @@ body {
 
 .ah-loader__text {
   font-size: var(--text-caption);
-  color: var(--color-text-dim);
+  color: #9a9488;
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
+}
+
+.ah-loader__bar {
+  background: #e8e4dc;
+}
+
+.ah-loader__bar::after {
+  background: #8b7355;
 }
 
 /* 3D Scroll Section */

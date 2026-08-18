@@ -41,8 +41,8 @@
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0a0908);
-    scene.fog = new THREE.FogExp2(0x0a0908, 0.028);
+    scene.background = new THREE.Color(0xf5f2ed);
+    scene.fog = new THREE.FogExp2(0xf5f2ed, 0.018);
 
     camera = new THREE.PerspectiveCamera(36, 1, 0.1, 120);
     camera.position.set(9, 5.5, 11);
@@ -789,7 +789,7 @@
     /* --------------------------------------------------------
        KEY LIGHTING
        -------------------------------------------------------- */
-    var hemi = new THREE.HemisphereLight(0xd0c8c0, 0x100e0c, 0.5);
+    var hemi = new THREE.HemisphereLight(0xf0ece4, 0x8b7355, 0.7);
     scene.add(hemi);
 
     /* Moonlight / key light — cool blue tint */
@@ -847,11 +847,11 @@
       pGeo.setAttribute("position", new THREE.BufferAttribute(pPositions, 3));
       var pMat = new THREE.PointsMaterial({
         color: 0xc9a96e,
-        size: 0.03,
+        size: 0.035,
         transparent: true,
-        opacity: 0.35,
+        opacity: 0.5,
         sizeAttenuation: true,
-        blending: THREE.AdditiveBlending,
+        blending: THREE.NormalBlending,
         depthWrite: false
       });
       particles = new THREE.Points(pGeo, pMat);
