@@ -700,17 +700,17 @@ body {
 
 .ah-loader__text {
   font-size: var(--text-caption);
-  color: #9a9488;
+  color: var(--color-text-dim);
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
 }
 
 .ah-loader__bar {
-  background: #e8e4dc;
+  background: var(--color-border);
 }
 
 .ah-loader__bar::after {
-  background: #8b7355;
+  background: var(--color-primary);
 }
 
 /* 3D Scroll Section */
@@ -802,9 +802,40 @@ body {
   margin-bottom: var(--space-7);
 }
 
-.ah-services__list {
-  display: flex;
-  flex-direction: column;
+.ah-services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--grid-gap);
+}
+
+.ah-service-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-subtle);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  transition: border-color var(--motion-normal) var(--ease-out),
+              transform var(--motion-normal) var(--ease-out);
+}
+
+.ah-service-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.ah-service-card__img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: block;
+  transition: transform var(--motion-cinematic) var(--ease-out);
+}
+
+.ah-service-card:hover .ah-service-card__img {
+  transform: scale(1.03);
+}
+
+.ah-service-card__body {
+  padding: var(--space-5);
 }
 
 .ah-service {
@@ -1042,10 +1073,13 @@ body {
   background: transparent;
 }
 
-.ah-scroll-progress .sp__fill {
+.ah-scroll-progress::after {
+  content: '';
+  display: block;
   height: 100%;
-  background: var(--color-primary);
-  transform-origin: left;
+  width: var(--scroll-progress, 0%);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover));
+  transition: width 0.1s linear;
 }
 
 /* ── PLACEHOLDER IMAGES ──────────────────────────────────────── */

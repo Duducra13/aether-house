@@ -19,8 +19,8 @@
   --color-surface-3:     #2a2722;
 
   --color-text:          #f0ece4;
-  --color-text-muted:    #9a9488;
-  --color-text-dim:      #5c5850;
+  --color-text-muted:    #b0a898;
+  --color-text-dim:      #8a8478;
 
   --color-border:        #2a2722;
   --color-border-light:  #3a3730;
@@ -31,7 +31,7 @@
   --color-focus:         #c9a96e;
 
   --color-on-dark:       #f0ece4;
-  --color-on-dark-muted: #9a9488;
+  --color-on-dark-muted: #b0a898;
 
   /* ── TYPOGRAPHY — Display + Body ───────────────────────────── */
   --font-display:        "Cormorant Garamond", "Times New Roman", Georgia, serif;

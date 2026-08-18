@@ -943,11 +943,23 @@
     if (scrollDriven) wireScroll();
 
     /* --------------------------------------------------------
+       VISIBILITY — pause when offscreen
+       -------------------------------------------------------- */
+    var isVisible = true;
+    if (!isReduced && typeof IntersectionObserver !== "undefined") {
+      var io = new IntersectionObserver(function (entries) {
+        isVisible = entries[0].isIntersecting;
+      }, { threshold: 0.05 });
+      io.observe(canvas);
+    }
+
+    /* --------------------------------------------------------
        ANIMATION LOOP
        -------------------------------------------------------- */
     (function tick() {
       if (disposed) return;
       requestAnimationFrame(tick);
+      if (!isVisible) return;
       var t = clock.getElapsedTime();
 
       if (building) {
@@ -1035,6 +1047,7 @@
        -------------------------------------------------------- */
     window.addEventListener("pagehide", function () {
       disposed = true;
+      if (io) io.disconnect();
       if (renderer) {
         renderer.dispose();
         renderer.forceContextLoss();

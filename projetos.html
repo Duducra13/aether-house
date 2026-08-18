@@ -55,6 +55,7 @@
 </head>
 <body>
 
+  <a href="#main-content" class="ah-skip-link">Pular para o conteúdo principal</a>
   <div class="ah-page-transition" aria-hidden="true"></div>
   <div class="ah-cursor" aria-hidden="true"></div>
   <div class="ah-cursor-dot" aria-hidden="true"></div>
@@ -87,7 +88,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
 
     <!-- ========================================
          01 — HERO
@@ -363,8 +364,8 @@
           requestAnimationFrame(loop);
         })();
         document.querySelectorAll('a, button, [role="button"], input, textarea, select').forEach(function (el) {
-          el.addEventListener('mouseenter', function () { cursor.classList.add('is-hover'); });
-          el.addEventListener('mouseleave', function () { cursor.classList.remove('is-hover'); });
+          el.addEventListener('mouseenter', function () { cursor.classList.add('is-hovering'); });
+          el.addEventListener('mouseleave', function () { cursor.classList.remove('is-hovering'); });
         });
       } else {
         if (cursor) cursor.style.display = 'none';
@@ -374,7 +375,7 @@
       /* Page transition on nav links */
       var overlay = document.querySelector('.ah-page-transition');
       if (overlay) {
-        document.querySelectorAll('.ah-nav__link, .ah-cta, a[href$=".html"]').forEach(function (link) {
+        document.querySelectorAll('.ah-nav-link, .ah-btn-cta, a[href$=".html"]').forEach(function (link) {
           link.addEventListener('click', function (e) {
             var href = this.getAttribute('href');
             if (href && href.endsWith('.html') && !e.ctrlKey && !e.metaKey) {
